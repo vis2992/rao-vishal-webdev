@@ -1,7 +1,76 @@
-input.form-control {
-    margin-bottom: 5px;
+
+/*div.nav-wrapper {*/
+    /*background-color: #0288D1;*/
+/*}*/
+
+/*nav.navbar {*/
+    /*background-color: #0288D1;*/
+/*}*/
+
+.blue-color {
+    background-color: #428BCA;
 }
 
-body {
-    padding-top: 36px;
+.red {
+    background-color: #D32F2F ;
 }
+
+.green {
+    background-color: #388E3C;
+}
+
+.grey-color {
+    background-color: #F8F8F8;
+}
+
+.black-color {
+    color: #333333;
+}
+
+.profile-blue {
+    color: #428BCA;
+}
+
+.grey-heading {
+    color: #777777;
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+}
+
+input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #0288D1;
+    box-shadow: 0 1px 0 0 #0288D1;
+}
+
+input:not([type]):focus:not([readonly])+label, input[type=text]:focus:not([readonly])+label, input[type=password]:focus:not([readonly])+label, input[type=email]:focus:not([readonly])+label, input[type=url]:focus:not([readonly])+label, input[type=time]:focus:not([readonly])+label, input[type=date]:focus:not([readonly])+label, input[type=datetime]:focus:not([readonly])+label, input[type=datetime-local]:focus:not([readonly])+label, input[type=tel]:focus:not([readonly])+label, input[type=number]:focus:not([readonly])+label, input[type=search]:focus:not([readonly])+label, textarea.materialize-textarea:focus:not([readonly])+label {
+    color: #0288D1;
+}
+
+@media only screen and (max-width: 600px){
+    .icon-pad {
+        padding-top: 10px;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    nav .brand-logo {
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+    nav .brand-logo.right {
+        right: 0.5rem;
+        left: auto;
+    }
+    nav .brand-logo.left {
+        left: 2.5rem;
+    }
+}
+
