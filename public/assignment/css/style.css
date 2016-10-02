@@ -35,8 +35,12 @@
     color: #777777 !important;
 }
 
+.inline-block-display {
+    display: inline-block !important;
+}
+
 .footer {
-    position: absolute;
+    position: fixed;
     right: 0;
     bottom: 0;
     left: 0;
