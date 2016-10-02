@@ -38,7 +38,9 @@
 .inline-block-display {
     display: inline-block !important;
 }
-
+.text-pad-left {
+    padding-left: 5% !important;
+}
 .footer {
     position: fixed;
     right: 0;
