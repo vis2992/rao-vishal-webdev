@@ -49,7 +49,7 @@
             .when("/user/:uid/website/:wid/page/:pid/widget/widget-youtube",{
                 templateUrl : "views/widget/widget-youtube.view.client.html"
             })
-            .default({
+            .otherwise({
                 redirectTo: "/login"
             });
     }
