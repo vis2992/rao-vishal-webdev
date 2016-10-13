@@ -27,6 +27,10 @@
     color: #333333 !important;
 }
 
+.display_block {
+    display: block;
+}
+
 .profile-blue {
     color: #428BCA !important;
 }
