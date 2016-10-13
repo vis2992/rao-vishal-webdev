@@ -2,6 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{rao-vishal-webdev/node_modules}" />
-    <file url="PROJECT" libraries="{a542e334c5, angular, angular-animate, angular-aria, angular-material, angular-messages, jquery-2.1.1, materialize}" />
+    <file url="PROJECT" libraries="{a542e334c5, angular, angular-animate, angular-aria, angular-material, angular-messages, angular-route, jquery-2.1.1, materialize}" />
   </component>
 </project>

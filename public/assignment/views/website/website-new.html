@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Website-new</title>
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <script src="https://use.fontawesome.com/a542e334c5.js"></script>
+    <!--Custom Stylesheet-->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+    <!--Header Navbar-->
+    <nav>
+        <div class="nav-wrapper blue-color">
+            <div class="col s1">
+                <a href="website-list.html" class="brand-logo left"><i class="fa fa-chevron-left icon-pad" aria-hidden="true"></i></a>
+            </div>
+            <div class="col s3">
+                <a href="" class="brand-logo">New Website</a>
+            </div>
+
+            <a href="website-list.html" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
+        </div>
+    </nav>
+    <!--End of Header Navbar-->
+    <!--Register Form-->
+    <div class="row">
+        <div class="col m4 hide-on-small-only">
+            <div class="card">
+                <div class="card-content flow-text inline-block-display">
+
+                    <div class="col m10">
+                        <a href="page-list.html">Address Book App</a>
+                    </div>
+                    <div class="col m2">
+                        <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col m10">
+                        <a href="page-list.html">Blogger</a>
+                    </div>
+                    <div class="col m2">
+                        <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col m10">
+                        <a href="page-list.html">Blogging App</a>
+                    </div>
+                    <div class="col m2">
+                        <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    </div>
+
+                    <div class="col m10">
+                        <a href="page-list.html">Script Testing App</a>
+                    </div>
+                    <div class="col m2">
+                        <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m8">
+            <div class="card">
+                <div class="card-content">
+                    <div class="input-field " style="display: block">
+                        <input id="website-name" type="text" class="validate">
+                        <label for="website-name">Name</label>
+                    </div>
+                    <div class="input-field ">
+                        <textarea id="website-description" style="display: block" class="materialize-textarea"></textarea>
+                        <label for="website-description">Description</label>
+                    </div>
+                    <!--<a class="waves-effect waves-light btn red" style="display: block;" href="login.html">Logout</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--End of Register Form-->
+
+    <!--Footer Navbar-->
+    <div class="row">
+        <nav class="navbar blue-color footer page-footer">
+            <div class="container">
+                <a href="profile.html" class="brand-logo right"><i class="fa fa-user" aria-hidden="true"></i></a>
+            </div>
+        </nav>
+    </div>
+    <!--End of Footer Navbar-->
+    <script>
+        $(document).ready(function() {
+            Materialize.updateTextFields();
+        });
+    </script>
+
+</body>
+</html>

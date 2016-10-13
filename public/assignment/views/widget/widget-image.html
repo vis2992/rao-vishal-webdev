@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Widget-image</title>
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <script src="https://use.fontawesome.com/a542e334c5.js"></script>
+    <!--Custom Stylesheet-->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+<!--Header Navbar-->
+<nav>
+    <div class="nav-wrapper grey-color">
+        <div class="col s1">
+            <a href="widget-list.html" class="brand-logo left"><i class="fa fa-chevron-left icon-pad black-color"></i></a>
+        </div>
+        <div class="col s3">
+            <a href="" class="brand-logo grey-heading">Widget Edit</a>
+        </div>
+
+        <a href="widget-list.html" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
+    </div>
+</nav>
+<!--End of Header Navbar-->
+<!--Register Form-->
+<div class="row">
+    <div class="col s12 m12">
+        <div class="card">
+            <div class="card-content">
+                <div class="input-field col s12 m12" style="display: block">
+                    <input id="widget-name" type="text" class="validate">
+                    <label for="widget-name">Name</label>
+                </div>
+                <div class="input-field col s12 m12">
+                    <input id="widget-text" type="text" class="validate">
+                    <label for="widget-text">Text</label>
+                </div>
+                <div class="input-field col s12 m12">
+                    <input id="widget-url" type="url" class="validate">
+                    <label for="widget-url">URL</label>
+                </div>
+                <div class="input-field col s12 m12">
+                    <input id="widget-size" type="number" class="validate">
+                    <label for="widget-size">Width</label>
+                </div>
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Choose Image</span>
+                        <input type="file" multiple>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="No file chosen">
+                    </div>
+                </div>
+                <a class="waves-effect waves-light btn blue-color" style="display: block;" href="">Upload Image</a>
+                <br>
+                <a class="waves-effect waves-light btn red" style="display: block;" href="widget-list.html">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Register Form-->
+
+<!--Footer Navbar-->
+<div class="row">
+    <nav class="navbar grey-color footer page-footer">
+        <div class="container">
+            <a href="profile.html" class="brand-logo right"><i class="fa fa-user profile-blue" aria-hidden="true"></i></a>
+        </div>
+    </nav>
+</div>
+<!--End of Footer Navbar-->
+<script>
+    $(document).ready(function() {
+        Materialize.updateTextFields();
+    });
+</script>
+
+</body>
+</html>
