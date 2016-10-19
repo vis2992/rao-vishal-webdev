@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-content">
                 <div class="input-field col s12">
-                    <input id="username" type="text" class="validate">
+                    <input id="username" ng-model="model.user.username" type="text" class="validate">
                     <label for="username">username</label>
                 </div>
                 <div class="input-field col s12">
@@ -20,14 +20,14 @@
                     <label for="email">Email address</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="firstname" type="text" class="validate" placeholder="Alice">
+                    <input id="firstname" ng-model="model.user.firstName" type="text" class="validate" placeholder="Alice">
                     <label for="firstname">First Name</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="lastname" type="text" class="validate" placeholder="Wonderland">
+                    <input id="lastname" ng-model="model.user.lastName" type="text" class="validate" placeholder="Wonderland">
                     <label for="lastname">Last Name</label>
                 </div>
-                <a class="waves-effect waves-light btn blue-color" style="display: block;" href="#/user/123/website">Websites</a>
+                <a class="waves-effect waves-light btn blue-color" style="display: block;" href="#/user/{{model.user._id}}/website">Websites</a>
                 <br>
                 <a class="waves-effect waves-light btn red" style="display: block;" href="#/login">Logout</a>
             </div>
@@ -38,9 +38,6 @@
 <!--Footer Navbar-->
 <div class="row">
     <nav class="navbar blue-color footer">
-        <div class="container">
-            <a href="#/user/123" class="brand-logo right"><i class="fa fa-user" aria-hidden="true"></i></a>
-        </div>
     </nav>
 </div>
 <!--End of Footer Navbar-->

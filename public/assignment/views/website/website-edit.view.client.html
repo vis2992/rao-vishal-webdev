@@ -17,34 +17,37 @@
     <div class="col m4 hide-on-small-only">
         <div class="card">
             <div class="card-content flow-text inline-block-display">
+                <div ng-repeat="website in model.websites">
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                </div>
+                <!--<div class="col m10">-->
+                    <!--<a href="#page">Address Book App</a>-->
+                <!--</div>-->
+                <!--<div class="col m2">-->
+                    <!--<a href="#website-edit"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                <!--</div>-->
 
-                <div class="col m10">
-                    <a href="#page">Address Book App</a>
-                </div>
-                <div class="col m2">
-                    <a href="#website-edit"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                </div>
+                <!--<div class="col m10">-->
+                    <!--<a href="page-list.html">Blogger</a>-->
+                <!--</div>-->
+                <!--<div class="col m2">-->
+                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                <!--</div>-->
 
-                <div class="col m10">
-                    <a href="page-list.html">Blogger</a>
-                </div>
-                <div class="col m2">
-                    <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                </div>
+                <!--<div class="col m10">-->
+                    <!--<a href="page-list.html">Blogging App</a>-->
+                <!--</div>-->
+                <!--<div class="col m2">-->
+                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                <!--</div>-->
 
-                <div class="col m10">
-                    <a href="page-list.html">Blogging App</a>
-                </div>
-                <div class="col m2">
-                    <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                </div>
-
-                <div class="col m10">
-                    <a href="page-list.html">Script Testing App</a>
-                </div>
-                <div class="col m2">
-                    <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                </div>
+                <!--<div class="col m10">-->
+                    <!--<a href="page-list.html">Script Testing App</a>-->
+                <!--</div>-->
+                <!--<div class="col m2">-->
+                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                <!--</div>-->
 
             </div>
         </div>
@@ -53,11 +56,11 @@
         <div class="card">
             <div class="card-content">
                 <div class="input-field col s12" style="display: block">
-                    <input id="website-name" type="text" class="validate">
+                    <input id="website-name" ng-model="model.website.name" type="text" class="validate">
                     <label for="website-name">Name</label>
                 </div>
                 <div class="input-field col s12">
-                    <textarea id="website-description" style="display: block" class="materialize-textarea"></textarea>
+                    <textarea id="website-description" ng-model="model.website.description" style="display: block" class="materialize-textarea"></textarea>
                     <label for="website-description">Description</label>
                 </div>
                 <a class="waves-effect waves-light btn red" style="display: block;" href="website-list.html">Delete</a>
@@ -71,7 +74,7 @@
 <div class="row">
     <nav class="navbar blue-color footer page-footer">
         <div class="container">
-            <a href="profile.html" class="brand-logo right"><i class="fa fa-user" aria-hidden="true"></i></a>
+            <a href="#/user/{{model.user._id}}" class="brand-logo right"><i class="fa fa-user" aria-hidden="true"></i></a>
         </div>
     </nav>
 </div>

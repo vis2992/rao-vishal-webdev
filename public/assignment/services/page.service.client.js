@@ -22,68 +22,57 @@
         };
         return api;
 
-        function findUserById(userId) {
-            for(var u in users) {
-                user = users[u];
-                if(user._id === userId) {
-                    return user;
-                }
-            }
-            return null;
-        }
-
-        function createUser(user){
+        function createPage(websiteId, page) {
             if( notempty(user._id) &&
                 notempty(user.username) &&
                 notempty(user.password) &&
                 notempty(user.firstName) &&
                 notempty(user.lastName)) {
-                users.push(user);
+                page.websiteId = websiteId;
+                pages.push(page);
             }
+        }
+
+        function findPageByWebsiteId(websiteId) {
+            var result = [];
+            for(var p in pages) {
+                if(pages[p].websiteId === websiteId) {
+                    result.push(pages[p]);
+                }
+            }
+            return result;
+        }
+
+        function findPageById(pageId) {
+            for(var p in pages) {
+                if (pages[p]._id === pageId) {
+                    return pages[p];
+                }
+            }
+            return null;
+        }
+
+        function updatePage(pageId, page) {
+            for(var p in pages) {
+                if (pages[p]._id === pageId) {
+                    pages[p].name = page.name;
+                    pages[p].websiteId = page.websiteId;
+                    pages[p].description = page.description;
+                }
+            }
+        }
+
+        function deletePage(pageId) {
+            pages.forEach(function (result, index) {
+                if (result["_id"] === userId) {
+                    pages.splice(index, 1);
+                }
+            });
         }
 
         function notempty(val) {
             return !(val === null || val === undefined || val === "")
         }
 
-        function findUserByUsername(username){
-            for(var u in users) {
-                user = users[u];
-                if(user.username === username) {
-                    return user;
-                }
-            }
-        }
-
-        function updateUser(userId, user){
-            for(var u in users) {
-                User = users[u];
-                if(User._id === userId){
-                    User.username = user.username;
-                    User.firstName = user.firstName;
-                    User.lastName = user.lastName;
-                    User.password = user.password;
-                }
-            }
-        }
-
-        function deleteUser(userId) {
-            users.forEach(function (result, index) {
-                if (result["_id"] === userId) {
-                    users.splice(index, 1);
-                }
-            });
-        }
-
-        function findUserByCredentials(username, password) {
-            for(var u in users) {
-                user = users[u];
-                if(    user.username === username
-                    && user.password === password) {
-                    return user;
-                }
-            }
-            return null;
-        }
     }
 })();

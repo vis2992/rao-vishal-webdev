@@ -36,20 +36,24 @@
         <div class="col s12 m12">
             <div class="card">
                 <div class="card-content flow-text">
-                    <a href="#/widget-list">Blog Post</a>
-                    <a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                    <br>
-                    <a href="#/widget-list">Blogs</a>
-                    <a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                    <br>
-                    <a href="#/widget-list">Home</a>
-                    <a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                    <br>
-                    <a href="#/widget-list">About Us</a>
-                    <a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                    <br>
-                    <a href="#/widget-list">Contact Us</a>
-                    <a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    <div ng-repeat="page in model.pages">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget/">{{page.name}}</a>
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    </div>
+                    <!--<a href="#/widget-list">Blog Post</a>-->
+                    <!--<a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                    <!--<br>-->
+                    <!--<a href="#/widget-list">Blogs</a>-->
+                    <!--<a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                    <!--<br>-->
+                    <!--<a href="#/widget-list">Home</a>-->
+                    <!--<a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                    <!--<br>-->
+                    <!--<a href="#/widget-list">About Us</a>-->
+                    <!--<a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                    <!--<br>-->
+                    <!--<a href="#/widget-list">Contact Us</a>-->
+                    <!--<a href="#/page-edit" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
                 </div>
             </div>
         </div>
@@ -60,7 +64,7 @@
     <div class="row">
         <nav class="navbar grey-color footer page-footer">
             <div class="container">
-                <a href="#/user/123" class="brand-logo right"><i class="fa fa-user profile-blue" aria-hidden="true"></i></a>
+                <a href="#/user/{{model.user._id}}" class="brand-logo right"><i class="fa fa-user profile-blue" aria-hidden="true"></i></a>
             </div>
         </nav>
     </div>
