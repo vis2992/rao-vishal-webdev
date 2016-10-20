@@ -8,7 +8,7 @@
             <a href="" class="brand-logo">Edit Website</a>
         </div>
 
-        <a href="#website" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
+        <a ng-click="model.editWebsite(model.website.name, model.website.description)" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--End of Header Navbar-->
@@ -18,36 +18,13 @@
         <div class="card">
             <div class="card-content flow-text inline-block-display">
                 <div ng-repeat="website in model.websites">
-                    <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
-                    <a href="#/user/{{model.userId}}/website/{{website._id}}" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    <div class="col m10">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+                    </div>
+                    <div class="col m2">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    </div>
                 </div>
-                <!--<div class="col m10">-->
-                    <!--<a href="#page">Address Book App</a>-->
-                <!--</div>-->
-                <!--<div class="col m2">-->
-                    <!--<a href="#website-edit"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
-                <!--</div>-->
-
-                <!--<div class="col m10">-->
-                    <!--<a href="page-list.html">Blogger</a>-->
-                <!--</div>-->
-                <!--<div class="col m2">-->
-                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
-                <!--</div>-->
-
-                <!--<div class="col m10">-->
-                    <!--<a href="page-list.html">Blogging App</a>-->
-                <!--</div>-->
-                <!--<div class="col m2">-->
-                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
-                <!--</div>-->
-
-                <!--<div class="col m10">-->
-                    <!--<a href="page-list.html">Script Testing App</a>-->
-                <!--</div>-->
-                <!--<div class="col m2">-->
-                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
-                <!--</div>-->
 
             </div>
         </div>
@@ -56,14 +33,16 @@
         <div class="card">
             <div class="card-content">
                 <div class="input-field col s12" style="display: block">
+                    <label for="website-name" class="position-static">Name</label>
                     <input id="website-name" ng-model="model.website.name" type="text" class="validate">
-                    <label for="website-name">Name</label>
+
                 </div>
                 <div class="input-field col s12">
+                    <label for="website-description" class="position-static">Description</label>
                     <textarea id="website-description" ng-model="model.website.description" style="display: block" class="materialize-textarea"></textarea>
-                    <label for="website-description">Description</label>
+
                 </div>
-                <a class="waves-effect waves-light btn red" style="display: block;" href="website-list.html">Delete</a>
+                <a class="waves-effect waves-light btn red" style="display: block;" ng-click="model.deleteWebsite()">Delete</a>
             </div>
         </div>
     </div>
@@ -74,13 +53,8 @@
 <div class="row">
     <nav class="navbar blue-color footer page-footer">
         <div class="container">
-            <a href="#/user/{{model.user._id}}" class="brand-logo right"><i class="fa fa-user" aria-hidden="true"></i></a>
+            <a href="#/user/{{model.userId}}" class="brand-logo right"><i class="fa fa-user" aria-hidden="true"></i></a>
         </div>
     </nav>
 </div>
 <!--End of Footer Navbar-->
-<script>
-    $(document).ready(function() {
-        Materialize.updateTextFields();
-    });
-</script>

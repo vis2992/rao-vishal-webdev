@@ -22,20 +22,45 @@
         }
     }
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, UserService, $location) {
         var vm = this;
 
-        var userId = parseInt($routeParams.uid);
 
-        var user = UserService.findUserById(userId + "");
+        vm.userId = parseInt($routeParams.uid);
 
+        var user = UserService.findUserById(vm.userId + "");
+        console.log(user);
         if(user != null) {
             vm.user = user;
         }
+
+        vm.ChangeUserData = ChangeUserData;
+
+        function ChangeUserData(firstName, lastName, username){
+            vm.user.firstName = firstName;
+            vm.user.lastName = lastName;
+            vm.user.username = username;
+            $location.url("/user/"+vm.userId);
+        }
     }
 
-    function RegisterController(UserService){
+    function RegisterController(UserService, $location){
         var vm = this;
+        vm.Register = Register;
+        function Register(username, password){
+            var id = Math.floor((Math.random() * 100) + 1);
+            while(true){
+                if(UserService.findUserById(id) === null)
+                    break;
+                else
+                    id = Math.floor((Math.random() * 100) + 1);
+            }
+            var new_user = {_id: id+"", username: username, password: password, firstName: " ", lastName: " "};
+            vm.userId = id;
+            vm.user = new_user;
+            UserService.createUser(new_user);
+            $location.url("/user/" + new_user._id);
+        }
 
     }
 })();

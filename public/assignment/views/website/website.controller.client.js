@@ -19,17 +19,55 @@
         init();
     }
 
-    function EditWebsiteController($routeParams, WebsiteService) {
+    function EditWebsiteController($routeParams, WebsiteService, $location) {
         var vm = this;
         var websiteId = parseInt($routeParams.wid);
+        vm.userId = parseInt($routeParams['uid']);
 
         function init() {
             vm.website = WebsiteService.findWebsiteById(websiteId+"");
+            vm.websites = WebsiteService.findWebsitesForUser(vm.userId.toString());
         }
         init();
+
+        vm.editWebsite = editWebsite;
+
+        function editWebsite(name, description){
+            vm.website.name = name;
+            vm.website.description = description;
+        }
+
+        vm.deleteWebsite = deleteWebsite;
+
+        function deleteWebsite(){
+            WebsiteService.deleteWebsite(websiteId);
+            $location.url("/user/"+vm.userId+"/website");
+        }
     }
 
-    function NewWebsiteController(){
+    function NewWebsiteController($routeParams, WebsiteService){
         var vm = this;
+        vm.userId = parseInt($routeParams['uid']);
+
+        function init() {
+            vm.websites = WebsiteService.findWebsitesForUser(vm.userId.toString());
+        }
+        init();
+
+        vm.newWebsite = newWebsite;
+        function newWebsite(name, description) {
+            var id = Math.floor((Math.random() * 100) + 1);
+            while(true){
+                if(WebsiteService.findWebsiteById(id) === null)
+                    break;
+                else
+                    id = Math.floor((Math.random() * 100) + 1);
+            }
+            var new_website = {};
+            new_website._id = id+"";
+            new_website.name = name;
+            new_website.description = description;
+            WebsiteService.createWebsite(vm.userId, new_website);
+        }
     }
 })();

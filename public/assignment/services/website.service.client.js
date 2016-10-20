@@ -29,9 +29,8 @@
         function createWebsite(userId, website){
             if( notempty(website._id) &&
                 notempty(website.name) &&
-                notempty(website.developerId) &&
                 notempty(website.description)) {
-                website.developerId = userId;
+                website.developerId = userId+"";
                 websites.push(website);
             }
         }

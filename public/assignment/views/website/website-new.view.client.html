@@ -2,13 +2,14 @@
 <nav>
     <div class="nav-wrapper blue-color">
         <div class="col s1">
-            <a href="website-list.html" class="brand-logo left"><i class="fa fa-chevron-left icon-pad" aria-hidden="true"></i></a>
+            <a href="#/user/{{model.userId}}/website" class="brand-logo left"><i class="fa fa-chevron-left icon-pad" aria-hidden="true"></i></a>
         </div>
         <div class="col s3">
             <a href="" class="brand-logo">New Website</a>
         </div>
 
-        <a href="website-list.html" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
+        <a href="#/user/{{model.userId}}/website" onclick="Materialize.toast('Website Created', 1000,'')"
+           ng-click="model.newWebsite(model.website.name, model.website.description)" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--End of Header Navbar-->
@@ -17,34 +18,41 @@
     <div class="col m4 hide-on-small-only">
         <div class="card">
             <div class="card-content flow-text inline-block-display">
+                <div ng-repeat="website in model.websites">
+                    <div class="col m10">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+                    </div>
+                    <div class="col m2">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <!--<div class="col m10">-->
+                    <!--<a href="page-list.html">Address Book App</a>-->
+                <!--</div>-->
+                <!--<div class="col m2">-->
+                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                <!--</div>-->
 
-                <div class="col m10">
-                    <a href="page-list.html">Address Book App</a>
-                </div>
-                <div class="col m2">
-                    <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                </div>
+                <!--<div class="col m10">-->
+                    <!--<a href="page-list.html">Blogger</a>-->
+                <!--</div>-->
+                <!--<div class="col m2">-->
+                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                <!--</div>-->
 
-                <div class="col m10">
-                    <a href="page-list.html">Blogger</a>
-                </div>
-                <div class="col m2">
-                    <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                </div>
+                <!--<div class="col m10">-->
+                    <!--<a href="page-list.html">Blogging App</a>-->
+                <!--</div>-->
+                <!--<div class="col m2">-->
+                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                <!--</div>-->
 
-                <div class="col m10">
-                    <a href="page-list.html">Blogging App</a>
-                </div>
-                <div class="col m2">
-                    <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                </div>
-
-                <div class="col m10">
-                    <a href="page-list.html">Script Testing App</a>
-                </div>
-                <div class="col m2">
-                    <a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>
-                </div>
+                <!--<div class="col m10">-->
+                    <!--<a href="page-list.html">Script Testing App</a>-->
+                <!--</div>-->
+                <!--<div class="col m2">-->
+                    <!--<a href="website-edit.html"><i class="fa fa-cog" aria-hidden="true"></i></a>-->
+                <!--</div>-->
 
             </div>
         </div>
@@ -57,7 +65,7 @@
                     <label for="website-name">Name</label>
                 </div>
                 <div class="input-field ">
-                    <textarea id="website-description" ng-model="model.user.description" style="display: block" class="materialize-textarea"></textarea>
+                    <textarea id="website-description" ng-model="model.website.description" style="display: block" class="materialize-textarea"></textarea>
                     <label for="website-description">Description</label>
                 </div>
                 <!--<a class="waves-effect waves-light btn red" style="display: block;" href="login.html">Logout</a>-->

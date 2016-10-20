@@ -2,7 +2,8 @@
 <nav>
     <div class="nav-wrapper blue-color">
         <a href="" class="brand-logo left text-pad-left">Profile</a>
-        <a href="#/user/123" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
+        <a onclick="Materialize.toast('Changes Saved', 1000,'')"
+           ng-click= "model.ChangeUserData(model.user.firstName, model.user.lastName, model.user.username)" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--End of Header Navbar-->
@@ -12,22 +13,22 @@
         <div class="card">
             <div class="card-content">
                 <div class="input-field col s12">
+                    <label for="username" class="position-static">username</label>
                     <input id="username" ng-model="model.user.username" type="text" class="validate">
-                    <label for="username">username</label>
                 </div>
                 <div class="input-field col s12">
+                    <label for="email" class="position-static">Email address</label>
                     <input id="email" type="email" class="validate" placeholder="alice@wonderland.com">
-                    <label for="email">Email address</label>
                 </div>
                 <div class="input-field col s12">
+                    <label for="firstname" class="position-static">First Name</label>
                     <input id="firstname" ng-model="model.user.firstName" type="text" class="validate" placeholder="Alice">
-                    <label for="firstname">First Name</label>
                 </div>
                 <div class="input-field col s12">
+                    <label for="lastname" class="position-static">Last Name</label>
                     <input id="lastname" ng-model="model.user.lastName" type="text" class="validate" placeholder="Wonderland">
-                    <label for="lastname">Last Name</label>
                 </div>
-                <a class="waves-effect waves-light btn blue-color" style="display: block;" href="#/user/{{model.user._id}}/website">Websites</a>
+                <a class="waves-effect waves-light btn blue-color" style="display: block;" href="#/user/{{model.userId}}/website">Websites</a>
                 <br>
                 <a class="waves-effect waves-light btn red" style="display: block;" href="#/login">Logout</a>
             </div>

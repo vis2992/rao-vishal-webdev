@@ -34,9 +34,7 @@
         function createUser(user){
             if( notempty(user._id) &&
                 notempty(user.username) &&
-                notempty(user.password) &&
-                notempty(user.firstName) &&
-                notempty(user.lastName)) {
+                notempty(user.password)) {
                 users.push(user);
             }
         }
