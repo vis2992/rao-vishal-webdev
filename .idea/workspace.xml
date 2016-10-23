@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="067fd740-fb47-4bb4-8af0-661779c197d4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assignment/services/page.service.client.js" afterPath="$PROJECT_DIR$/public/assignment/services/page.service.client.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assignment/views/page/page-edit.view.client.html" afterPath="$PROJECT_DIR$/public/assignment/views/page/page-edit.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assignment/views/page/page-list.view.client.html" afterPath="$PROJECT_DIR$/public/assignment/views/page/page-list.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assignment/views/page/page-new.view.client.html" afterPath="$PROJECT_DIR$/public/assignment/views/page/page-new.view.client.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assignment/views/page/page.controller.client.js" afterPath="$PROJECT_DIR$/public/assignment/views/page/page.controller.client.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assignment/views/website/website-edit.view.client.html" afterPath="$PROJECT_DIR$/public/assignment/views/website/website-edit.view.client.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assignment/views/website/website-new.view.client.html" afterPath="$PROJECT_DIR$/public/assignment/views/website/website-new.view.client.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assignment/views/website/website.controller.client.js" afterPath="$PROJECT_DIR$/public/assignment/views/website/website.controller.client.js" />
     </list>
     <ignored path="rao-vishal-webdev.iws" />
@@ -36,8 +31,8 @@
       <file leaf-file-name="website.controller.client.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/assignment/views/website/website.controller.client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="45" column="9" selection-start-line="32" selection-start-column="8" selection-end-line="45" selection-end-column="9" />
+            <state relative-caret-position="285">
+              <caret line="21" column="74" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="74" />
               <folding>
                 <element signature="e#0#44#0" expanded="false" />
               </folding>
@@ -45,41 +40,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="website-new.view.client.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/assignment/views/website/website-new.view.client.html">
+      <file leaf-file-name="website-edit.view.client.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/assignment/views/website/website-edit.view.client.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="10" column="105" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="105" />
-              <folding />
+            <state relative-caret-position="373">
+              <caret line="35" column="104" selection-start-line="35" selection-start-column="104" selection-end-line="35" selection-end-column="104" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="page-new.view.client.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/assignment/views/page/page-new.view.client.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="4" column="77" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="page-edit.view.client.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="page-edit.view.client.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/assignment/views/page/page-edit.view.client.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
-              <folding />
+            <state relative-caret-position="373">
+              <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="page.controller.client.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="page.controller.client.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/assignment/views/page/page.controller.client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="405">
+              <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
               <folding>
                 <element signature="e#0#44#0" expanded="false" />
               </folding>
@@ -100,7 +89,7 @@
       <file leaf-file-name="page.service.client.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/assignment/services/page.service.client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="577">
+            <state relative-caret-position="682">
               <caret line="65" column="43" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
               <folding />
             </state>
@@ -132,7 +121,7 @@
       <file leaf-file-name="user.service.client.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/assignment/services/user.service.client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="-218">
               <caret line="21" column="19" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="19" />
               <folding />
             </state>
@@ -193,14 +182,14 @@
         <option value="$PROJECT_DIR$/public/assignment/views/user/register.view.client.html" />
         <option value="$PROJECT_DIR$/public/assignment/views/user/profile.view.client.html" />
         <option value="$PROJECT_DIR$/public/assignment/views/user/user.controller.client.js" />
-        <option value="$PROJECT_DIR$/public/assignment/views/website/website-edit.view.client.html" />
         <option value="$PROJECT_DIR$/public/assignment/services/website.service.client.js" />
         <option value="$PROJECT_DIR$/public/assignment/views/page/page-list.view.client.html" />
         <option value="$PROJECT_DIR$/public/assignment/views/page/page-new.view.client.html" />
-        <option value="$PROJECT_DIR$/public/assignment/views/website/website.controller.client.js" />
         <option value="$PROJECT_DIR$/public/assignment/views/website/website-new.view.client.html" />
         <option value="$PROJECT_DIR$/public/assignment/services/page.service.client.js" />
+        <option value="$PROJECT_DIR$/public/assignment/views/website/website.controller.client.js" />
         <option value="$PROJECT_DIR$/public/assignment/views/page/page-edit.view.client.html" />
+        <option value="$PROJECT_DIR$/public/assignment/views/website/website-edit.view.client.html" />
         <option value="$PROJECT_DIR$/public/assignment/views/page/page.controller.client.js" />
       </list>
     </option>
@@ -497,7 +486,10 @@
       <recent name="$PROJECT_DIR$/public/assignment/views/page" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.webdev">
+  <component name="RunManager" selected="JavaScript Debug.website-edit.view.client.html">
+    <configuration default="false" name="website-edit.view.client.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/rao-vishal-webdev/public/assignment/views/website/website-edit.view.client.html">
+      <method />
+    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <method />
     </configuration>
@@ -558,9 +550,15 @@
       </EXTENSION>
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Node.js.webdev" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.website-edit.view.client.html" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.website-edit.view.client.html" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -582,12 +580,12 @@
       <workItem from="1476825077217" duration="28389000" />
       <workItem from="1477067877758" duration="81000" />
       <workItem from="1477073681819" duration="90000" />
-      <workItem from="1477075076843" duration="10281000" />
+      <workItem from="1477075076843" duration="13580000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86951000" />
+    <option name="totallyTimeSpent" value="90250000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -860,17 +858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assignment/views/website/website-edit.view.client.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="52" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="52" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#textarea#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assignment/views/page/page-list.view.client.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -887,44 +874,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assignment/views/website/website.controller.client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="45" column="9" selection-start-line="32" selection-start-column="8" selection-end-line="45" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#44#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assignment/services/page.service.client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="65" column="43" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assignment/views/website/website-new.view.client.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="10" column="105" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="105" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assignment/views/user/register.view.client.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="142" selection-start-line="18" selection-start-column="142" selection-end-line="18" selection-end-column="142" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assignment/services/user.service.client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -947,13 +900,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/assignment/views/page/page.controller.client.js">
+    <entry file="file://$PROJECT_DIR$/public/assignment/services/user.service.client.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#44#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-218">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assignment/views/website/website-new.view.client.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="10" column="105" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="105" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -965,11 +924,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/assignment/views/website/website.controller.client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="21" column="74" selection-start-line="21" selection-start-column="65" selection-end-line="21" selection-end-column="74" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assignment/views/website/website-edit.view.client.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="35" column="104" selection-start-line="35" selection-start-column="104" selection-end-line="35" selection-end-column="104" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/assignment/views/page/page-edit.view.client.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
+        <state relative-caret-position="373">
+          <caret line="29" column="79" selection-start-line="29" selection-start-column="79" selection-end-line="29" selection-end-column="79" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assignment/services/page.service.client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="65" column="43" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assignment/views/page/page.controller.client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#44#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

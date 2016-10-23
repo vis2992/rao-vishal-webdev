@@ -8,7 +8,7 @@
             <a href="" class="brand-logo">Edit Website</a>
         </div>
 
-        <a ng-click="model.editWebsite(model.website.name, model.website.description)" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
+        <a ng-click="model.editWebsite()" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--End of Header Navbar-->
@@ -25,7 +25,6 @@
                         <a href="#/user/{{model.userId}}/website/{{website._id}}" class="right"><i class="fa fa-cog" aria-hidden="true"></i></a>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -35,12 +34,10 @@
                 <div class="input-field col s12" style="display: block">
                     <label for="website-name" class="position-static">Name</label>
                     <input id="website-name" ng-model="model.website.name" type="text" class="validate">
-
                 </div>
                 <div class="input-field col s12">
                     <label for="website-description" class="position-static">Description</label>
                     <textarea id="website-description" ng-model="model.website.description" style="display: block" class="materialize-textarea"></textarea>
-
                 </div>
                 <a class="waves-effect waves-light btn red" style="display: block;" ng-click="model.deleteWebsite()">Delete</a>
             </div>

@@ -9,7 +9,7 @@
         </div>
 
         <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" onclick="Materialize.toast('Changes Saved', 1000,'')"
-           ng-click="model.editPage(model.page.name, model.page.title)" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
+           ng-click="model.editPage()" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--End of Header Navbar-->
@@ -19,15 +19,15 @@
         <div class="card">
             <div class="card-content">
                 <div class="input-field col s12" style="display: block">
-                    <input id="page-name" ng-model="model.page.name" type="text" class="validate">
                     <label for="page-name">Name</label>
+                    <input id="page-name" ng-model="model.page.name" type="text" class="validate">
                 </div>
                 <div class="input-field col s12">
-                    <input id="page-title" ng-model="model.page.name" type="text" class="validate">
                     <label for="page-title">Title</label>
+                    <input id="page-title" ng-model="model.page.description" type="text" class="validate">
                 </div>
                 <a class="waves-effect waves-light btn red" style="display: block;"
-                   ng-click="model.deletePage()" onclick="Materialize.toast('Page Deleted Created', 1000,'')"
+                   ng-click="model.removePage()" onclick="Materialize.toast('Page Deleted', 1000,'')"
                    href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">Delete</a>
             </div>
         </div>

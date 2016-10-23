@@ -32,9 +32,8 @@
 
         vm.editWebsite = editWebsite;
 
-        function editWebsite(name, description){
-            vm.website.name = name;
-            vm.website.description = description;
+        function editWebsite(){
+            WebsiteService.updateWebsite(websiteId,vm.website);
             $location.url("/user/"+vm.userId+"/website");
         }
 

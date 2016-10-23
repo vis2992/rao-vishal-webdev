@@ -20,31 +20,24 @@
         init();
     }
 
-    function EditPageController($routeParams, PageService) {
+    function EditPageController($routeParams, PageService, $location) {
         var vm = this;
         vm.pageId = parseInt($routeParams['pid']);
         vm.websiteId = parseInt($routeParams['wid']);
         vm.userId = parseInt($routeParams['uid']);
-
-
-
-        function init() {
-            vm.page = PageService.findPageById(pageId.toString());
-        }
-        init();
+        vm.page = PageService.findPageById(vm.pageId.toString());
 
         vm.editPage = editPage;
 
-        function editPage(name, description){
-            vm.page.name = name;
-            vm.page.description = description;
+        function editPage(){
+            PageService.updatePage(vm.pageId, vm.page);
             $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
         }
 
-        vm.deletePage = deletePage;
+        vm.removePage = removePage;
 
-        function deletePage(){
-            PageService.deletePage(pageId+"");
+        function removePage(){
+            PageService.deletePage(vm.pageId+"");
             $location.url("/user/"+vm.userId+"/website"+vm.websiteId+"/page");
         }
     }
