@@ -35,12 +35,13 @@
         function editWebsite(name, description){
             vm.website.name = name;
             vm.website.description = description;
+            $location.url("/user/"+vm.userId+"/website");
         }
 
         vm.deleteWebsite = deleteWebsite;
 
         function deleteWebsite(){
-            WebsiteService.deleteWebsite(websiteId);
+            WebsiteService.deleteWebsite(websiteId+"");
             $location.url("/user/"+vm.userId+"/website");
         }
     }
@@ -49,10 +50,10 @@
         var vm = this;
         vm.userId = parseInt($routeParams['uid']);
 
-        function init() {
-            vm.websites = WebsiteService.findWebsitesForUser(vm.userId.toString());
-        }
-        init();
+        // function init() {
+        //     vm.websites = WebsiteService.findWebsitesForUser(vm.userId.toString());
+        // }
+        // init();
 
         vm.newWebsite = newWebsite;
         function newWebsite(name, description) {

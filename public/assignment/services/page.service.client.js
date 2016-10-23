@@ -23,11 +23,9 @@
         return api;
 
         function createPage(websiteId, page) {
-            if( notempty(user._id) &&
-                notempty(user.username) &&
-                notempty(user.password) &&
-                notempty(user.firstName) &&
-                notempty(user.lastName)) {
+            if( notempty(page._id) &&
+                notempty(page.name) &&
+                notempty(page.description)) {
                 page.websiteId = websiteId;
                 pages.push(page);
             }
@@ -64,7 +62,7 @@
 
         function deletePage(pageId) {
             pages.forEach(function (result, index) {
-                if (result["_id"] === userId) {
+                if (result["_id"] === pageId) {
                     pages.splice(index, 1);
                 }
             });
