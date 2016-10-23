@@ -17,10 +17,43 @@
         ];
 
         var api = {
-            findWidgetsForPage: findWidgetsForPage,
-            findWidgetById: findWidgetById
+            findWidgetById: findWidgetById,
+            createWidget: createWidget,
+            findWidgetsByPageId: findWidgetsByPageId,
+            updateWidget: updateWidget,
+            deleteWidget: deleteWidget
         };
         return api;
+
+        function createWidget(widget){
+            widgets.push(widget);
+        }
+
+        function findWidgetsByPageId(pageId) {
+            var result = [];
+            for(var wg in widgets) {
+                if(widgets[wg].pageId === pageId) {
+                    result.push(widgets[wg]);
+                }
+            }
+            return result;
+        }
+
+        function updateWidget(widgetId, widget){
+            for(var wg in widgets) {
+                if (widgets[wg]._id === widgetId) {
+                    widgets[wg] = widget;
+                }
+            }
+        }
+
+        function deleteWidget(widgetId) {
+            widgets.forEach(function (result, index) {
+                if (result["_id"] === widgetId) {
+                    widgets.splice(index, 1);
+                }
+            });
+        }
 
         function findWidgetById(wid) {
             for(var w in widgets) {
@@ -29,11 +62,6 @@
                 }
             }
             return null;
-        }
-
-        function findWidgetsForPage(pid) {
-            // TODO: iterate over array looking for widgets for the pid
-            return widgets;
         }
     }
 })();

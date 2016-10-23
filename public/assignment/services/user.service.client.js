@@ -54,12 +54,8 @@
 
         function updateUser(userId, user){
             for(var u in users) {
-                User = users[u];
-                if(User._id === userId){
-                    User.username = user.username;
-                    User.firstName = user.firstName;
-                    User.lastName = user.lastName;
-                    User.password = user.password;
+                if(users[u]._id === userId){
+                    user[u] = user;
                 }
             }
         }

@@ -38,9 +38,7 @@
         function updateWebsite(websiteId, website) {
             for(var w in websites) {
                 if (websites[w]._id === websiteId) {
-                    websites[w].name = website.name;
-                    websites[w].developerId = website.developerId;
-                    websites[w].description = website.description;
+                    websites[w] = website;
                 }
             }
         }

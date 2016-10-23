@@ -8,18 +8,18 @@
         .controller("EditWidgetController", EditWidgetController)
         .controller("NewWidgetController", NewWidgetController);
 
-    function WidgetListController($routeParams,
-                                  WidgetService, $sce) {
+    function WidgetListController($routeParams, WidgetService, $sce) {
         var vm  = this;
-        vm.uid  = $routeParams.uid;
-        vm.wid  = $routeParams.wid;
-        vm.pid  = $routeParams.pid;
+        vm.pageId = parseInt($routeParams['pid']);
+        vm.websiteId = parseInt($routeParams['wid']);
+        vm.userId = parseInt($routeParams['uid']);
         vm.wgid = $routeParams.wgid;
         vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
+        vm.checkSafeImage = checkSafeImage;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsForPage(vm.pid);
+            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId+"");
         }
         init();
 
@@ -34,10 +34,13 @@
             console.log(url);
             return $sce.trustAsResourceUrl(url);
         }
+
+        function checkSafeImage (url){
+            return $sce.trustAsResourceUrl(url);
+        }
     }
 
-    function EditWidgetController($routeParams,
-                                  WidgetService, $sce) {
+    function EditWidgetController($routeParams, WidgetService, $sce) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -49,10 +52,76 @@
         }
         init();
 
+        vm.HeaderWidget = HeaderWidget;
+        vm.ImageWidget = ImageWidget;
+        vm.YoutubeWidget = YoutubeWidget;
+
+
+        function HeaderWidget() {
+
+            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
+            WidgetService.updateWidget(vm.wgid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
+        function ImageWidget() {
+
+            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
+            WidgetService.updateWidget(vm.wgid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
+        function YoutubeWidget() {
+
+            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            WidgetService.updateWidget(vm.wgid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
     }
 
-    function NewWidgetController(){
+    function NewWidgetController($routeParams, WidgetService){
         var vm = this;
+        vm.pageId = parseInt($routeParams['pid']);
+        vm.websiteId = parseInt($routeParams['wid']);
+        vm.userId = parseInt($routeParams['uid']);
+        vm.HeaderWidget = HeaderWidget;
+        vm.ImageWidget = ImageWidget;
+        vm.YoutubeWidget = YoutubeWidget;
+
+
+        function HeaderWidget() {
+
+            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
+            WidgetService.createWidget(vm.pid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
+        function ImageWidget() {
+
+            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
+            WidgetService.createWidget(vm.pid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
+        function YoutubeWidget() {
+
+            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            WidgetService.createWidget(vm.pid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
+        function uniqueWidgetId() {
+            var id = Math.floor((Math.random() * 1000) + 1).toString();
+            while(true){
+                if(WidgetService.findWidgetById(id) === null)
+                    break;
+                else
+                    id = Math.floor((Math.random() * 1000) + 1).toString();
+            }
+        }
+
+
     }
 
 })();

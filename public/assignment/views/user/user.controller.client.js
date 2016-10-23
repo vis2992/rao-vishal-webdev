@@ -36,10 +36,8 @@
 
         vm.ChangeUserData = ChangeUserData;
 
-        function ChangeUserData(firstName, lastName, username){
-            vm.user.firstName = firstName;
-            vm.user.lastName = lastName;
-            vm.user.username = username;
+        function ChangeUserData(){
+            UserService.updateUser(vm.userId, vm.user);
             $location.url("/user/"+vm.userId);
         }
     }
