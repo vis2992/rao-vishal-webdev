@@ -40,7 +40,7 @@
         }
     }
 
-    function EditWidgetController($routeParams, WidgetService, $sce) {
+    function EditWidgetController($routeParams, WidgetService, $sce, $location) {
         var vm = this;
         vm.uid = $routeParams.uid;
         vm.wid = $routeParams.wid;
@@ -56,31 +56,35 @@
         vm.ImageWidget = ImageWidget;
         vm.YoutubeWidget = YoutubeWidget;
 
-
         function HeaderWidget() {
 
-            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
+            var widget = {name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
             WidgetService.updateWidget(vm.wgid+"", widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
         function ImageWidget() {
 
-            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
+            var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
             WidgetService.updateWidget(vm.wgid+"", widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
         function YoutubeWidget() {
 
-            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
             WidgetService.updateWidget(vm.wgid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
+        function deleteWidget() {
+            WidgetService.deleteWidget(vm.wgid+"");
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
     }
 
-    function NewWidgetController($routeParams, WidgetService){
+    function NewWidgetController($routeParams, WidgetService, $location){
         var vm = this;
         vm.pid = parseInt($routeParams['pid']);
         vm.wid = parseInt($routeParams['wid']);
@@ -88,28 +92,7 @@
         vm.HeaderWidget = HeaderWidget;
         vm.ImageWidget = ImageWidget;
         vm.YoutubeWidget = YoutubeWidget;
-
-
-        function HeaderWidget() {
-
-            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
-            WidgetService.createWidget(vm.pid+"", widget);
-            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
-        }
-
-        function ImageWidget() {
-
-            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
-            WidgetService.createWidget(vm.pid+"", widget);
-            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
-        }
-
-        function YoutubeWidget() {
-
-            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
-            WidgetService.createWidget(vm.pid+"", widget);
-            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
-        }
+        vm.uniqueWidgetId = uniqueWidgetId;
 
         function uniqueWidgetId() {
             var id = Math.floor((Math.random() * 1000) + 1).toString();
@@ -119,6 +102,29 @@
                 else
                     id = Math.floor((Math.random() * 1000) + 1).toString();
             }
+            return id;
+        }
+
+
+        function HeaderWidget() {
+
+            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
+            WidgetService.createWidget(vm.pid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
+        function ImageWidget() {
+
+            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
+            WidgetService.createWidget(vm.pid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
+        }
+
+        function YoutubeWidget() {
+
+            var widget = {_id:uniqueWidgetId(), name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            WidgetService.createWidget(vm.pid+"", widget);
+            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
 

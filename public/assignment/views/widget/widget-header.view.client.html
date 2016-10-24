@@ -20,25 +20,23 @@
 <!--Register Form-->
 <div class="row">
     <div class="col s12 m12">
-        <div class="card">
-            <div class="card-content">
-                <div class="input-field col s12" style="display: block">
-                    <input id="widget-name" ng-model = "model.widget.name" type="text" class="validate">
-                    <label for="widget-name">Name</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="widget-text" ng-model = "model.widget.text" type="text" class="validate">
-                    <label for="widget-text">Text</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="widget-size" ng-model = "model.widget.size" type="number" class="validate">
-                    <label for="widget-size">Size</label>
-                </div>
-                <div ng-if="model.widget._id">
-                    <a class="waves-effect waves-light btn red" ng-click="model.deleteWidget()" style="display: block;">Delete</a>
-                </div>
+        <form>
+            <div class="input-field col s12" style="display: block">
+                <input id="widget-name" ng-model = "model.widget.name" type="text" class="validate">
+                <label for="widget-name">Name</label>
             </div>
-        </div>
+            <div class="input-field col s12">
+                <input id="widget-text" ng-model = "model.widget.text" type="text" class="validate">
+                <label for="widget-text">Text</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="widget-size" ng-model = "model.widget.size" type="number" class="validate">
+                <label for="widget-size">Size</label>
+            </div>
+            <div ng-if="model.widget._id">
+                <a class="waves-effect waves-light btn red" ng-click="model.deleteWidget()" style="display: block;">Delete</a>
+            </div>
+        </form>
     </div>
 </div>
 <!--End of Register Form-->

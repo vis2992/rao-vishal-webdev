@@ -25,8 +25,17 @@
         };
         return api;
 
-        function createWidget(widget){
-            widgets.push(widget);
+        function NotEmpty(val) {
+            return !( val === null || val === "" || val === undefined )
+        }
+
+        function createWidget(pageId, widget) {
+            if (NotEmpty(widget._id) &&
+                NotEmpty(widget.widgetType))
+            {
+                widget.pageId = pageId;
+                widgets.push(widget);
+            }
         }
 
         function findWidgetsByPageId(pageId) {
