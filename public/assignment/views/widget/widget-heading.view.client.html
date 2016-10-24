@@ -2,13 +2,18 @@
 <nav>
     <div class="nav-wrapper grey-color">
         <div class="col s1">
-            <a href="widget-list.html" class="brand-logo left"><i class="fa fa-chevron-left icon-pad black-color" aria-hidden="true"></i></a>
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="brand-logo left"><i class="fa fa-chevron-left icon-pad black-color" aria-hidden="true"></i></a>
         </div>
-        <div class="col s3">
-            <a href="" class="brand-logo grey-heading">Widget Edit</a>
+        <div ng-switch ="model.widget._id">
+            <div ng-switch-when="undefined" class="col s3">
+                <a href="" class="brand-logo grey-heading">New Widget</a>
+            </div>
+            <div ng-switch-default class="col s3">
+                <a href="" class="brand-logo grey-heading">Widget Edit</a>
+            </div>
         </div>
 
-        <a href="widget-list.html" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
+        <a ng-click="model.HeaderWidget()" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--End of Header Navbar-->
@@ -18,18 +23,20 @@
         <div class="card">
             <div class="card-content">
                 <div class="input-field col s12" style="display: block">
-                    <input id="widget-name" type="text" class="validate">
+                    <input id="widget-name" ng-model = "model.widget.name" type="text" class="validate">
                     <label for="widget-name">Name</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="widget-text" type="text" class="validate">
+                    <input id="widget-text" ng-model = "model.widget.text" type="text" class="validate">
                     <label for="widget-text">Text</label>
                 </div>
                 <div class="input-field col s12">
-                    <input id="widget-size" type="number" class="validate">
+                    <input id="widget-size" ng-model = "model.widget.size" type="number" class="validate">
                     <label for="widget-size">Size</label>
                 </div>
-                <a class="waves-effect waves-light btn red" style="display: block;" href="page-list.html">Delete</a>
+                <div ng-if="model.widget._id">
+                    <a class="waves-effect waves-light btn red" ng-click="model.deleteWidget()" style="display: block;">Delete</a>
+                </div>
             </div>
         </div>
     </div>
@@ -40,7 +47,7 @@
 <div class="row">
     <nav class="navbar grey-color footer page-footer">
         <div class="container">
-            <a href="#/user/{{model.user._id}}" class="brand-logo right"><i class="fa fa-user profile-blue" aria-hidden="true"></i></a>
+            <a href="#/user/{{model.uid}}" class="brand-logo right"><i class="fa fa-user profile-blue" aria-hidden="true"></i></a>
         </div>
     </nav>
 </div>

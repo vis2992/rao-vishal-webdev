@@ -82,9 +82,9 @@
 
     function NewWidgetController($routeParams, WidgetService){
         var vm = this;
-        vm.pageId = parseInt($routeParams['pid']);
-        vm.websiteId = parseInt($routeParams['wid']);
-        vm.userId = parseInt($routeParams['uid']);
+        vm.pid = parseInt($routeParams['pid']);
+        vm.wid = parseInt($routeParams['wid']);
+        vm.uid = parseInt($routeParams['uid']);
         vm.HeaderWidget = HeaderWidget;
         vm.ImageWidget = ImageWidget;
         vm.YoutubeWidget = YoutubeWidget;
