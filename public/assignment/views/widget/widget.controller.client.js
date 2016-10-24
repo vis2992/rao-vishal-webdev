@@ -55,25 +55,20 @@
         vm.HeaderWidget = HeaderWidget;
         vm.ImageWidget = ImageWidget;
         vm.YoutubeWidget = YoutubeWidget;
+        vm.deleteWidget = deleteWidget;
 
         function HeaderWidget() {
-
-            var widget = {name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
-            WidgetService.updateWidget(vm.wgid+"", widget);
+            WidgetService.updateWidget(vm.wgid, vm.widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
         function ImageWidget() {
-
-            var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
-            WidgetService.updateWidget(vm.wgid+"", widget);
+            WidgetService.updateWidget(vm.wgid+"", vm.widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
         function YoutubeWidget() {
-
-            var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
-            WidgetService.updateWidget(vm.wgid+"", widget);
+            WidgetService.updateWidget(vm.wgid+"", vm.widget);
             $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
         }
 
