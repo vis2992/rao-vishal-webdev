@@ -56,12 +56,6 @@
         vm.ImageWidget = ImageWidget;
         vm.YoutubeWidget = YoutubeWidget;
         vm.deleteWidget = deleteWidget;
-        vm.updateWidget = updateWidget;
-
-        function updateWidget() {
-            WidgetService.updateWidget(vm.wgid, vm.widget);
-            $location.url("/user/" + vm.uid + "/website/"+vm.wid + "/page/" + vm.pid + "/widget");
-        }
 
         function HeaderWidget() {
             WidgetService.updateWidget(vm.wgid, vm.widget);
