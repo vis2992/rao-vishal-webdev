@@ -1,6 +1,6 @@
 # Web App Maker
 
-1. Installation Instructions:
+Installation Instructions:
 1. git clone 
 1. cd web-dev-template
 1. npm install
