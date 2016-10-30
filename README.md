@@ -1,6 +1,7 @@
-# web-dev-template
+# Web App Maker
 
-1. git clone https://github.com/jannunzi/web-dev-template.git
+1. Installation Instructions:
+1. git clone 
 1. cd web-dev-template
 1. npm install
 1. mongod
