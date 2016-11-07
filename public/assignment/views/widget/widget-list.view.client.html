@@ -17,30 +17,32 @@
     <div class="col s12 m12">
         <div class="card">
             <div class="card-content flow-text">
-                <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets" style="position: relative">
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="right list-menu">
-                        <i class="fa fa-cog" aria-hidden="true"></i>
-                        <i class="fa fa-bars" aria-hidden="true"></i>
-                    </a>
-                    <div ng-switch="widget.size" ng-switch-when="HEADER" class="zero-right-pad">
-                        <h1 ng-switch-when="1">{{widget.text}}</h1>
-                        <h2 ng-switch-when="2">{{widget.text}}</h2>
-                        <h3 ng-switch-when="3">{{widget.text}}</h3>
-                        <h4 ng-switch-when="4">{{widget.text}}</h4>
-                        <h5 ng-switch-when="5">{{widget.text}}</h5>
-                        <h6 ng-switch-when="6">{{widget.text}}</h6>
+                <div jgasortable class="col-sm-12 widget-edit-parent " >
+                    <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets" class="list-parent">
+                        <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="right list-child">
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                        </a>
+                        <div ng-switch="widget.size" ng-switch-when="HEADER" class="zero-right-pad">
+                            <h1 ng-switch-when="1">{{widget.text}}</h1>
+                            <h2 ng-switch-when="2">{{widget.text}}</h2>
+                            <h3 ng-switch-when="3">{{widget.text}}</h3>
+                            <h4 ng-switch-when="4">{{widget.text}}</h4>
+                            <h5 ng-switch-when="5">{{widget.text}}</h5>
+                            <h6 ng-switch-when="6">{{widget.text}}</h6>
+                        </div>
+                        <div ng-switch-when="YOUTUBE" style="width: 100%" class="zero-right-pad">
+                            <iframe width="100%" height="315"
+                                    ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
+                                    frameborder="0" allowfullscreen></iframe>
+                        </div>
+                        <div ng-switch-when="IMAGE" class="zero-right-pad">
+                            <img ng-src = "{{widget.url}}" style="width:95%;"/>
+                        </div>
+                        <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
+                        </div>
+                        <br/>
                     </div>
-                    <div ng-switch-when="YOUTUBE" style="width:95%;" class="zero-right-pad">
-                        <iframe width="90%" height="315"
-                                ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
-                                frameborder="0" allowfullscreen></iframe>
-                    </div>
-                    <div ng-switch-when="IMAGE" class="zero-right-pad">
-                        <img ng-src = "{{widget.url}}" style="width:95%;"/>
-                    </div>
-                    <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
-                    </div>
-                    <br/>
                 </div>
             </div>
         </div>

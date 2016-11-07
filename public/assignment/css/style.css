@@ -94,11 +94,20 @@ label.position-static {
     height:100%;
 }
 
-.list-menu {
+.list-child {
+    position: absolute;
     top: 0;
     right: 0;
     z-index: 10;
     background-color: white;
+}
+
+.hidden-item{
+    display: none;
+}
+
+.list-parent{
+    position: relative;
 }
 
 .second-icon {

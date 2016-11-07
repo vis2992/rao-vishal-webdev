@@ -2,7 +2,7 @@
 <nav>
     <div class="nav-wrapper grey-color">
         <div class="col s1">
-            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="brand-logo left"><i class="fa fa-chevron-left icon-pad black-color"></i></a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="brand-logo left"><i class="fa fa-chevron-left icon-pad black-color"></i></a>
         </div>
         <div ng-switch ="model.widget._id">
             <div ng-switch-when="undefined" class="col s3">
@@ -27,35 +27,41 @@
                         <div class="btn">
                             <span>Select Image</span>
                             <input name="myFile" type="file">
+                            <input  name="width"    value="{{model.widget.width}}" class="hidden-item"/>
+                            <input  name="websiteId" value="{{model.websiteId}}"   class="hidden-item"/>
+                            <input  name="userId" value="{{model.userId}}"   class="hidden-item"/>
+                            <input  name="pageId" value="{{model.pageId}}"   class="hidden-item"/>
+                            <input  name="widgetId" value="{{model.wgid}}"   class="hidden-item">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">
                         </div>
                     </div>
-                    <button type="submit" class="waves-effect waves-light btn blue-color">Upload Image</button>
+
+
+                    <div class="input-field col s12 m12" style="display: block">
+                        <input id="widget-name" ng-model = "model.widget.name" type="text" class="validate">
+                        <label for="widget-name">Name</label>
+                    </div>
+                    <div class="input-field col s12 m12">
+                        <input id="widget-text" ng-model = "model.widget.text" type="text" class="validate">
+                        <label for="widget-text">Text</label>
+                    </div>
+                    <div class="input-field col s12 m12">
+                        <input id="widget-url" ng-model = "model.widget.url" type="url" class="validate">
+                        <label for="widget-url">URL</label>
+                    </div>
+                    <div class="input-field col s12 m12">
+                        <input id="widget-size" ng-model = "model.widget.width" type="number" class="validate">
+                        <label for="widget-size">Width</label>
+                    </div>
+
+
+                    <button type="submit" class="waves-effect waves-light btn blue-color" style="display: block;" href="">Upload Image</button>
                 </form>
-                <div class="input-field col s12 m12" style="display: block">
-                    <input id="widget-name" ng-model = "model.widget.name" type="text" class="validate">
-                    <label for="widget-name">Name</label>
-                </div>
-                <div class="input-field col s12 m12">
-                    <input id="widget-text" ng-model = "model.widget.text" type="text" class="validate">
-                    <label for="widget-text">Text</label>
-                </div>
-                <div class="input-field col s12 m12">
-                    <input id="widget-url" ng-model = "model.widget.url" type="url" class="validate">
-                    <label for="widget-url">URL</label>
-                </div>
-                <div class="input-field col s12 m12">
-                    <input id="widget-size" ng-model = "model.widget.width" type="number" class="validate">
-                    <label for="widget-size">Width</label>
-                </div>
-
-
-                <a class="waves-effect waves-light btn blue-color" style="display: block;" href="">Upload Image</a>
                 <br>
                 <div ng-if="model.widget._id">
-                    <a class="waves-effect waves-light btn red" style="display: block;" ng-click="model.deleteWidget()">Delete</a>
+                    <a class="waves-effect waves-light btn red" style="display: block;" ng-click="model.deleteCurrentWidget()">Delete</a>
                 </div>
             </div>
         </div>

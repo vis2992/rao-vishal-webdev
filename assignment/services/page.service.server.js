@@ -20,6 +20,7 @@ module.exports = function(app) {
 
     function createPage(req, res){
         var page = req.body;
+        page._id = new Date().getTime().toString();
         pages.push(page);
         res.send(pages);
     }

@@ -83,13 +83,13 @@
         }
 
         function init() {
-            WidgetService
-                .findWidgetById(vm.wgid)
+            var promise = WidgetService.findWidgetById(vm.wgid);
+            promise
                 .success(function (widget) {
                     vm.widget = widget;
                 })
                 .error(function (error) {
-                    console.log(error);
+                    console.log("error " + error);
                 });
         }
         init();
@@ -101,24 +101,41 @@
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
-        vm.createWidget = createWidget;
+        // vm.createWidget = createWidget;
 
-        function createWidget(widgetType) {
-            if(widgetType === "HEADER" || widgetType === "IMAGE" || widgetType === "HTML" || widgetType === "YOUTUBE") {
-                var widget = {};
-                widget.widgetType = widgetType;
-                WidgetService
-                    .createWidget(vm.pageId, widget)
-                    .success(function (newWgid) {
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+newWgid);
-                    })
-                    .error(function (error) {
-                        console.log(error);
-                    });
-            }
-            else {
-                vm.error = "incompatible widget type";
-            }
+        vm.createHeader = createHeader;
+        vm.createImage = createImage;
+        vm.createYoutube = createYoutube;
+
+        function createHeader() {
+            var widget = { name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
+            widgetCreate(widget);
+        }
+
+        function createImage() {
+
+            var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
+            widgetCreate(widget);
+        }
+
+        function createYoutube() {
+
+            var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            widgetCreate(widget);
+        }
+
+        function widgetCreate(widget) {
+
+            var promise = WidgetService.createWidget(vm.pageId+"", widget);
+            promise
+                .success(function (result) {
+                    if(result === '1') {
+                        $location.url("/user/" + vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    }
+                })
+                .error(function (error) {
+                    console.log("error " + error);
+                });
         }
 
 
