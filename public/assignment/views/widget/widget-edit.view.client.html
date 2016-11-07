@@ -1,1 +1,14 @@
-<div ng-include="'views/widget/widget-'+model.widget.widgetType.toLowerCase()+'.view.client.html'"></div>
+<div ng-switch="model.widget.widgetType">
+    <div ng-switch-when="HEADER">
+        <ng-include src="'views/widget/widget-header.view.client.html'"/>
+    </div>
+    <div ng-switch-when="HTML">
+        <ng-include src="'views/widget/widget-header.view.client.html'"/>
+    </div>
+    <div ng-switch-when="IMAGE">
+        <ng-include src="'views/widget/widget-image.view.client.html'"/>
+    </div>
+    <div ng-switch-when="YOUTUBE">a
+        <ng-include src="'views/widget/widget-youtube.view.client.html'"/>
+    </div>
+</div>
