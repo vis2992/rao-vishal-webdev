@@ -17,7 +17,7 @@
 
         function sort(pageId, start, end) {
             var url = '/page/' + pageId + "/widget?initial=" + start +  "&final=" + end;
-            $http.put(url);
+            return $http.put(url);
         }
 
         function createWidget(pageId, widget) {
