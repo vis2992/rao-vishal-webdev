@@ -28,8 +28,8 @@ module.exports = function(app) {
         var wid = req.params.websiteId;
         var result = [];
         for(var p in pages){
-            if(pages[p].wid == wid){
-                result.push(websites[w]);
+            if(pages[p].websiteId == wid){
+                result.push(pages[p]);
             }
         }
         res.json(result);

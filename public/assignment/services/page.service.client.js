@@ -6,7 +6,7 @@
         .module("WebAppMaker")
         .factory("PageService", PageService);
 
-    function PageService() {
+    function PageService($http) {
 
         var api = {
             createPage: createPage,
@@ -18,28 +18,28 @@
         return api;
 
         function createPage(websiteId, page) {
-            var url = "/api/website/:websiteId/page";
-            return http.post(url, page);
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.post(url, page);
         }
 
         function findPageByWebsiteId(websiteId) {
-            var url = "/api/website/"+websiteId+"/page";
-            http.get(url);
+            var url = "/api/website/" + websiteId + "/page";
+            return $http.get(url);
         }
 
         function findPageById(pageId) {
-            var url = "/api/page/"+pageId;
-            http.get(url);
+            var url = "/api/page/" + pageId;
+            return $http.get(url);
         }
 
         function updatePage(pageId, page) {
-            var url = "/api/page/"+pageId;
-            http.put(url, page);
+            var url = "/api/page/" + pageId;
+            return $http.put(url, page);
         }
 
         function deletePage(pageId) {
-            var url = "/api/page/"+pageId;
-            http.delete(url);
+            var url = "/api/page/" + pageId;
+            return $http.delete(url);
         }
 
     }

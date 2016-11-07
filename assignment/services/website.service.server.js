@@ -27,7 +27,7 @@ module.exports = function(app) {
         var uid = req.params.userId;
         var result = [];
         for(var w in websites) {
-            if(websites[w].uid == uid) {
+            if(websites[w].developerId == uid) {
                 result.push(websites[w]);
             }
         }

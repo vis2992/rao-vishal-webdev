@@ -35,7 +35,7 @@ module.exports = function(app) {
         var pid = req.params.pageId;
         var result = [];
         for(var wg in widgets){
-            if(widgets[wg]._id == pid){
+            if(widgets[wg].pageId == pid){
                 result.push(widgets[wg]);
             }
         }
@@ -43,10 +43,10 @@ module.exports = function(app) {
     }
 
     function findWidgetById(req, res){
-        var wgid = req.params.wgid;
+        var wgid = req.params.widgetId;
         for(var wg in widgets){
             if(widgets[wg]._id == wgid){
-                res.send(widgets[p]);
+                res.send(widgets[wg]);
             }
         }
     }

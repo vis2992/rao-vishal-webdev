@@ -10,64 +10,117 @@
 
     function WebsiteListController($routeParams, WebsiteService) {
         var vm = this;
+        var userId = $routeParams['uid'];
+        vm.userId = userId;
+        var promise = WebsiteService.findWebsitesForUser(userId);
+        promise
+            .success(function (websites) {
+                vm.websites = websites;
+                console.log(vm.websites);
 
-        vm.userId = parseInt($routeParams['uid']);
-
-        function init() {
-            vm.websites = WebsiteService.findWebsitesForUser(vm.userId.toString());
-        }
-        init();
+            })
+            .error(function (error) {
+                console.log(error);
+            });
     }
 
     function EditWebsiteController($routeParams, WebsiteService, $location) {
         var vm = this;
-        var websiteId = parseInt($routeParams.wid);
-        vm.userId = parseInt($routeParams['uid']);
+        var userId = $routeParams.uid;
+        vm.currentWebsiteId = websiteId;
+        vm.deleteCurrentWebsite = deleteCurrentWebsite;
+        vm.updateCurrentWebsite = updateCurrentWebsite;
+
 
         function init() {
-            vm.website = WebsiteService.findWebsiteById(websiteId+"");
-            vm.websites = WebsiteService.findWebsitesForUser(vm.userId.toString());
+
+            WebsiteService
+                .findWebsitesForUser(userId)
+                .success(function (userWebsites) {
+                    vm.userWebsites = userWebsites;
+                    for(var i in userWebsites)
+                    {
+                        if(websiteId === userWebsites[i]._id)
+                        {
+                            vm.userWebsite =  userWebsites[i];
+                            break;
+                        }
+                    }
+                })
+                .error(function (error) {
+                    console.log(error);
+                })
         }
         init();
 
-        vm.editWebsite = editWebsite;
-
-        function editWebsite(){
-            WebsiteService.updateWebsite(websiteId,vm.website);
-            $location.url("/user/"+vm.userId+"/website");
+        function deleteCurrentWebsite(websiteId)
+        {
+            WebsiteService
+                .removeWebsite(websiteId)
+                .success(function () {
+                    $location.url("/user/"+userId + "/website/");
+                })
+                .error(function (error) {
+                    console.log(error);
+                    vm.error = "Sorry! Could not delete the website";
+                });
         }
 
-        vm.deleteWebsite = deleteWebsite;
-
-        function deleteWebsite(){
-            WebsiteService.deleteWebsite(websiteId+"");
-            $location.url("/user/"+vm.userId+"/website");
+        function updateCurrentWebsite()
+        {
+            WebsiteService
+                .updateWebsite(vm.userWebsite._id, vm.userWebsite)
+                .success(function () {
+                    $location.url("/user/"+userId + "/website/");
+                })
+                .error(function (error) {
+                    console.log(error);
+                    vm.error = "Sorry! Could not update the website";
+                })
         }
     }
 
     function NewWebsiteController($routeParams, WebsiteService){
         var vm = this;
-        vm.userId = parseInt($routeParams['uid']);
+        var userId = $routeParams.uid;
+        var websiteId = $routeParams.wid;
+        vm.userId = userId;
+        vm.currentWebsiteId = websiteId;
+        vm.createWebsite = createWebsite;
 
-        // function init() {
-        //     vm.websites = WebsiteService.findWebsitesForUser(vm.userId.toString());
-        // }
-        // init();
+        function init() {
+            var userId = $routeParams['uid'];
+            vm.userId = userId;
+            var promise = WebsiteService.findWebsitesForUser(userId);
+            promise
+                .success(function (websites) {
+                    vm.userWebsites = websites;
 
-        vm.newWebsite = newWebsite;
-        function newWebsite(name, description) {
-            var id = Math.floor((Math.random() * 100) + 1);
-            while(true){
-                if(WebsiteService.findWebsiteById(id) === null)
-                    break;
-                else
-                    id = Math.floor((Math.random() * 100) + 1);
+                })
+                .error(function (error) {
+                    console.log(error);
+                })
+        }
+        init();
+
+
+        function createWebsite()
+        {
+            if(vm.website === undefined)
+            {
+                vm.error = "Please enter a Website Name";
+                return;
             }
-            var new_website = {};
-            new_website._id = id+"";
-            new_website.name = name;
-            new_website.description = description;
-            WebsiteService.createWebsite(vm.userId, new_website);
+
+            WebsiteService
+                .createWebsite(vm.userId, vm.website)
+                .success(function () {
+                    $location.url("/user/"+userId + "/website/");
+                })
+                .error(function (error) {
+                    console.log(error);
+                    vm.error = "Website with same name exists. Please choose a different name";
+                });
         }
     }
 })();
