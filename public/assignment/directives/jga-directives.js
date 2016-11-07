@@ -1,6 +1,3 @@
-/**
- * Created by vishalrao on 11/6/16.
- */
 (function(){
 
     angular
@@ -10,7 +7,7 @@
     function jgaSortable() {
 
 
-        function linker(scope, element) {
+        function linker(scope, element, attributes) {
 
             var start = -1;
             var end = -1;
@@ -18,7 +15,7 @@
             element
                 .sortable({
                     start: function (event, ui) {
-                        start = $(ui.item).index();
+                       start = $(ui.item).index();
                     },
                     stop: function (event, ui) {
                         end = $(ui.item).index();
