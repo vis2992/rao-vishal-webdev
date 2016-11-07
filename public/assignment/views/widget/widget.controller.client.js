@@ -29,9 +29,9 @@
         vm.checkSafeHtml = checkSafeHtml;
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
 
-        function checkSafeHtml(widget)
+        function checkSafeHtml(html)
         {
-            return $sce.trustAsHtml(widget.text);
+            return $sce.trustAsHtml(html);
         }
 
         function checkSafeYouTubeUrl(url) {
@@ -50,35 +50,49 @@
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
         vm.wgid = $routeParams.wgid;
-        vm.updateCurrentWidget = updateCurrentWidget;
-        vm.deleteCurrentWidget = deleteCurrentWidget;
+        vm.headerHandler = headerHandler;
+        vm.imageHandler = imageHandler;
+        vm.youtubeHandler = youtubeHandler;
+        vm.deleteWidget = deleteWidget;
 
-        function updateCurrentWidget() {
-            WidgetService
-                .updateWidget(vm.wgid, vm.widget)
-                .success(function (status) {
-                    if(status == '0') {
-                        vm.error = "widget update error";
-                    }
-                    else {
-                        $location.url("/user/"+vm.userId + "/website/" + vm.websiteId + "/page/"+vm.pageId+"/widget");
-                    }
+        function headerHandler() {
+            var widget = {name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
+            widgetUpdate(widget)
+        }
 
+        function imageHandler() {
+            var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
+            widgetUpdate(widget)
+        }
+
+        function youtubeHandler() {
+            var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
+            widgetUpdate(widget)
+        }
+
+        function widgetUpdate(widget) {
+            var promise = WidgetService.updateWidget(vm.wgid+"", widget);
+            promise
+                .success(function (result) {
+                    if(result === '1') {
+                        $location.url("/user/" + vm.userid + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    }
                 })
                 .error(function (error) {
-                    console.log(error);
-
+                    console.log("error " + error);
                 });
         }
 
-        function deleteCurrentWidget() {
-            WidgetService
-                .deleteWidget(vm.wgid)
-                .success(function () {
-                    $location.url("/user/"+vm.userId + "/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+        function deleteWidget() {
+            var promise = WidgetService.deleteWidget(vm.wgid+"");
+            promise
+                .success(function (result) {
+                    if(result === '1') {
+                        $location.url("/user/" + vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
+                    }
                 })
                 .error(function (error) {
-                    console.log(error);
+                    console.log("error " + error);
                 });
         }
 
@@ -103,23 +117,21 @@
         vm.pageId = $routeParams.pid;
         // vm.createWidget = createWidget;
 
-        vm.createHeader = createHeader;
-        vm.createImage = createImage;
-        vm.createYoutube = createYoutube;
+        vm.headerHandler = headerHandler;
+        vm.imageHandler = imageHandler;
+        vm.youtubeHandler = youtubeHandler;
 
-        function createHeader() {
+        function headerHandler() {
             var widget = { name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
             widgetCreate(widget);
         }
 
-        function createImage() {
-
+        function imageHandler() {
             var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
             widgetCreate(widget);
         }
 
-        function createYoutube() {
-
+        function youtubeHandler() {
             var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
             widgetCreate(widget);
         }
