@@ -8,7 +8,7 @@
             <a href="" class="brand-logo">Edit Website</a>
         </div>
 
-        <a ng-click="model.editWebsite()" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
+        <a ng-click="model.updateCurrentWebsite()" class="brand-logo right"><i class="fa fa-check icon-pad" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--End of Header Navbar-->
@@ -39,7 +39,7 @@
                     <label for="website-description" class="position-static">Description</label>
                     <textarea id="website-description" ng-model="model.website.description" style="display: block" class="materialize-textarea"></textarea>
                 </div>
-                <a class="waves-effect waves-light btn red" style="display: block;" ng-click="model.deleteWebsite()">Delete</a>
+                <a class="waves-effect waves-light btn red" style="display: block;" ng-click="model.deleteCurrentWebsite()">Delete</a>
             </div>
         </div>
     </div>

@@ -26,29 +26,34 @@
 
     function EditWebsiteController($routeParams, WebsiteService, $location) {
         var vm = this;
-        var userId = $routeParams.uid;
-        vm.currentWebsiteId = websiteId;
+        vm.userId = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
         vm.deleteCurrentWebsite = deleteCurrentWebsite;
         vm.updateCurrentWebsite = updateCurrentWebsite;
 
 
         function init() {
 
+            // WebsiteService
+            //     .findWebsitesForUser(userId)
+            //     .success(function (userWebsites) {
+            //         vm.userWebsites = userWebsites;
+            //         for(var i in userWebsites)
+            //         {
+            //             if(websiteId === userWebsites[i]._id)
+            //             {
+            //                 vm.website =  userWebsites[i];
+            //                 break;
+            //             }
+            //         }
+            //     })
+            //     .error(function (error) {
+            //         console.log(error);
+            //     })
             WebsiteService
-                .findWebsitesForUser(userId)
-                .success(function (userWebsites) {
-                    vm.userWebsites = userWebsites;
-                    for(var i in userWebsites)
-                    {
-                        if(websiteId === userWebsites[i]._id)
-                        {
-                            vm.userWebsite =  userWebsites[i];
-                            break;
-                        }
-                    }
-                })
-                .error(function (error) {
-                    console.log(error);
+                .findWebsiteById(vm.websiteId)
+                .success(function(website){
+                    vm.website = website;
                 })
         }
         init();
@@ -58,7 +63,7 @@
             WebsiteService
                 .removeWebsite(websiteId)
                 .success(function () {
-                    $location.url("/user/"+userId + "/website/");
+                    $location.url("/user/"+vm.userId + "/website/");
                 })
                 .error(function (error) {
                     console.log(error);
@@ -69,9 +74,9 @@
         function updateCurrentWebsite()
         {
             WebsiteService
-                .updateWebsite(vm.userWebsite._id, vm.userWebsite)
+                .updateWebsite(vm.websiteId, vm.website)
                 .success(function () {
-                    $location.url("/user/"+userId + "/website/");
+                    $location.url("/user/"+vm.userId + "/website/");
                 })
                 .error(function (error) {
                     console.log(error);

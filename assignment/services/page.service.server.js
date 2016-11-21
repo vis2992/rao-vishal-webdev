@@ -29,7 +29,7 @@ module.exports = function(app) {
         var wid = req.params.websiteId;
         var result = [];
         for(var p in pages){
-            if(pages[p].websiteId == wid){
+            if(pages[p].websiteId === wid){
                 result.push(pages[p]);
             }
         }
@@ -49,7 +49,7 @@ module.exports = function(app) {
         var page = req.body;
         var pid = req.params.pageId;
         for(var p in pages){
-            if(pages[p]._id == pid){
+            if(pages[p]._id === pid){
                 pages[p] = page;
             }
         }
