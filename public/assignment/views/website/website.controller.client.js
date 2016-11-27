@@ -58,10 +58,10 @@
         }
         init();
 
-        function deleteCurrentWebsite(websiteId)
+        function deleteCurrentWebsite()
         {
             WebsiteService
-                .removeWebsite(websiteId)
+                .removeWebsite(vm.websiteId)
                 .success(function () {
                     $location.url("/user/"+vm.userId + "/website/");
                 })

@@ -9,7 +9,7 @@
         </div>
 
         <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" onclick="Materialize.toast('Changes Saved', 1000,'')"
-           ng-click="model.editPage()" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
+           ng-click="model.updateCurrentPage()" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--End of Header Navbar-->
@@ -23,11 +23,11 @@
                     <input id="page-name" ng-model="model.page.name" type="text" class="validate">
                 </div>
                 <div class="input-field col s12">
-                    <label for="page-title">Title</label>
-                    <input id="page-title" ng-model="model.page.description" type="text" class="validate">
+                    <label for="page-description">Title</label>
+                    <input id="page-description" ng-model="model.page.description" type="text" class="validate">
                 </div>
                 <a class="waves-effect waves-light btn red" style="display: block;"
-                   ng-click="model.removePage()" onclick="Materialize.toast('Page Deleted', 1000,'')"
+                   ng-click="model.deleteCurrentPage()" onclick="Materialize.toast('Page Deleted', 1000,'')"
                    href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">Delete</a>
             </div>
         </div>

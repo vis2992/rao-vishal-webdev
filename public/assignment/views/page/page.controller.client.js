@@ -34,28 +34,16 @@
         vm.updateCurrentPage = updateCurrentPage;
 
         function init() {
-            var promise = PageService.findPageByWebsiteId(vm.websiteId);
-            promise
-                .success(function (websitePages) {
-                    vm.websitePagesonEdit = websitePages;
-                    for(var i in websitePages)
-                    {
-                        if(vm.pageId === websitePages[i]._id)
-                        {
-                            vm.websitePage =  websitePages[i];
-                            break;
-                        }
-                    }
-                })
-                .error(function (error) {
-                    console.log(error);
+            PageService.findPageById(vm.pageId)
+                .success(function (page) {
+                    vm.page = page;
                 })
         }
         init();
 
-        function deleteCurrentPage(pageId) {
+        function deleteCurrentPage() {
             PageService
-                .deletePage(pageId)
+                .deletePage(vm.pageId)
                 .success(function (status) {
                     if(status == '0')
                     {
@@ -73,7 +61,7 @@
 
         function updateCurrentPage() {
             PageService
-                .updatePage(vm.websitePage._id, vm.websitePage)
+                .updatePage(vm.pageId, vm.page)
                 .success(function (status) {
                     if(status == '0') {
                         vm.error = "Unable to update page";
