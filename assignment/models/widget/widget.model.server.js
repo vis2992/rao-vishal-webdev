@@ -2,24 +2,161 @@
  * Created by vishalrao on 11/8/16.
  */
 module.exports = function () {
+    var model = {};
     var mongoose = require("mongoose");
-    var WidgetModel = mongoose.Schema({
-        _page: {type: mongoose.Schema.Types.ObjectId, ref:"PageModel"},
-        type:  {type: String, enum: ['heading', 'image', 'youtube', 'html', 'text']},
-        name: String,
-        text: String,
-        placeholder: String,
-        description: String,
-        url: String,
-        width: String,
-        height: String,
-        rows: Number,
-        size: Number,
-        class: String,
-        icon: String,
-        deletable: Boolean,
-        formatted: Boolean,
-        dateCreated: {type: Date, default: Date.now}
-    });
-    return WidgetModel;
+    var WidgetSchema = require("./widget.schema.server")();
+    var WidgetModel = mongoose.model("WidgetModel", WidgetSchema);
+
+    var api = {
+        createWidget: createWidget,
+        findAllWidgetsForPage: findAllWidgetsForPage,
+        findWidgetById: findWidgetById,
+        updateWidget: updateWidget,
+        deleteWidget: deleteWidget,
+        reorderWidget: reorderWidget,
+        setModel : setModel
+
+    };
+
+
+    return api;
+
+    function setModel(_model) {
+        model = _model;
+
+    }
+
+    function createWidget(pageId, widget) {
+        return WidgetModel.create(widget)
+            .then(function (widgetObj) {
+                return model.pageModel
+                    .findPageById(pageId)
+                    .then(function (pageObj) {
+                        return findAllWidgetsForPage(pageId)
+                            .then(function () {
+                                pageObj.widgets.push(widgetObj._id);
+                                pageObj.save();
+                                widgetObj._page = pageObj._id;
+                                return widgetObj.save();
+
+                            })
+
+                    })
+
+            })
+
+    }
+
+    function findAllWidgetsForPage(pageId) {
+        return model.pageModel.findAllWidgetsForPage(pageId);
+
+    }
+
+    function findWidgetById(widgetId) {
+        return WidgetModel.findById(widgetId);
+    }
+
+    function updateWidget(widget) {
+
+        var widgetType = widget.widgetType;
+        if(widgetType === "HEADER")
+        {
+            return WidgetModel
+                .update(
+                    {
+                        _id: widget._id
+                    },
+                    {
+                        name: widget.name,
+                        text: widget.text,
+                        size: widget.size
+                    }
+                )
+        }
+        else if(widgetType === "HTML")
+        {
+            return WidgetModel.update(
+                {
+                    _id: widget._id
+                },
+                {
+                    text: widget.text
+                }
+            )
+        }
+        else if(widgetType === "IMAGE")
+        {
+            return WidgetModel.update(
+                {
+                    _id: widget._id
+                },
+                {
+                    name: widget.name,
+                    text: widget.text,
+                    url: widget.url,
+                    width: widget.width
+                }
+            )
+        }
+        else
+        {
+            return WidgetModel.update(
+                {
+                    _id: widget._id
+                },
+                {
+                    name: widget.name,
+                    text: widget.text,
+                    url: widget.url,
+                    width: widget.width
+                }
+            )
+        }
+    }
+
+    function deleteWidget(widgetId) {
+        return WidgetModel.findById(widgetId)
+            .then(function (widgetObj) {
+                var pageId = widgetObj._page;
+                return model
+                    .pageModel
+                    .removeWidgetFromPage(pageId, widgetId)
+                    .then(function (page) {
+                        return WidgetModel.remove({_id: widgetId});
+                    })
+            })
+    }
+
+    function reorderWidget(start, end, pageId) {
+        return WidgetModel.find({_page: pageId},
+            function (err, widgets) {
+
+                widgets.forEach(function (widget) {
+
+                    if(start < end)
+                    {
+                        if (widget.order == start)
+                            widget.order = end;
+                        else if (widget.order > start && widget.order <= end)
+                            widget.order = widget.order - 1;
+
+                        widget.save();
+                    }
+                    else
+                    {
+                        if(widget.order < start && widget.order >= end)
+                            widget. order = widget.order + 1;
+                        else if(widget.order == start)
+                        {
+                            widget.order = end;
+                        }
+                        widget.save();
+                    }
+
+                });
+            });
+
+    }
+
+
 };

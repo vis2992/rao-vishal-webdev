@@ -11,7 +11,7 @@ module.exports = function() {
         email: String,
         phone: String,
         websites: [{type: mongoose.Schema.Types.ObjectId, ref:'WebsiteModel'}],
-        dateCreated: Date, default: Date.now
+        dateCreated: {type: Date, default: Date.now}
     }, {collection: "user"});
     return UserModel;
 };

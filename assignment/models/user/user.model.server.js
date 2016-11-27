@@ -2,42 +2,46 @@
  * Created by vishalrao on 11/8/16.
  */
 module.exports = function () {
+    var mongoose = require('mongoose');
     var model = {};
-    var mongoose = require("mongoose");
-    var UserSchema = require("./user.schema.server")();
-    var UserModel  = mongoose.model("UserModel", UserSchema);
+    var UserSchema = require('./user.schema.server')();
+    var UserModel = mongoose.model("UserModel", UserSchema);
 
     var api = {
         createUser: createUser,
         findUserById: findUserById,
-        findUserByCredentials: findUserByCredentials,
-        findWebsitesForUser: findWebsitesForUser,
         updateUser: updateUser,
+        findUserByCredentials: findUserByCredentials,
+        findUserByUsername: findUserByUsername,
+        findAllWebsitesForUser: findAllWebsitesForUser,
         removeUser: removeUser,
+        removeWebsiteFromUser : removeWebsiteFromUser,
         setModel: setModel
     };
     return api;
+
     function setModel(_model) {
         model = _model;
     }
 
-    function findWebsitesForUser(userId) {
-        return UserModel
-            .findById(userId)
-            .populate("websites", "name")
+    function findAllWebsitesForUser(userId) {
+        return UserModel.findById(userId)
+            .populate("websites")
             .exec();
     }
 
-    function removeUser(userId) {
-        return UserModel
-            .remove({_id: userId});
+    function createUser(user) {
+        return UserModel.create(user);
     }
 
-    function findUserByCredentials(username, password) {
+    function  findUserById(userId) {
+        return UserModel.findById(userId);
+    }
+
+    function findUserByUsername(username) {
         return UserModel.find({
-            username: username,
-            password: password
-        });
+            username: username
+        })
     }
 
     function updateUser(userId, user) {
@@ -47,18 +51,44 @@ module.exports = function () {
                     _id: userId
                 },
                 {
-                    first: user.first,
-                    last: user.last
+                    firstName: user.firstName,
+                    lastName: user.lastName
                 }
             );
+
     }
 
-    function findUserById(userId) {
-        // UserModel.find({_id: userId}) --> returns an array
-        return UserModel.findById(userId);
+    function findUserByCredentials(username, password) {
+
+        return UserModel.findOne({
+            username: username,
+            password: password
+        });
+
     }
 
-    function createUser(user) {
-        return UserModel.create(user);
+    function removeUser(userId) {
+        return UserModel
+            .remove({
+                _id: userId
+            });
+
     }
+
+    function  removeWebsiteFromUser(userId, websiteId) {
+        return UserModel.findById(userId)
+            .then(function (userObj) {
+                var userWebsites = userObj.websites;
+                for(var i = 0; i < userWebsites.length; i++)
+                {
+                    if(userWebsites[i] == websiteId)
+                        userWebsites.splice(i,1);
+                }
+                userObj.websites = userWebsites;
+                return userObj.save();
+            })
+    }
+
+
+
 };
