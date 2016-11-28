@@ -4,7 +4,7 @@
 /**
  * Created by vishalrao on 11/1/16.
  */
-module.exports = function(app) {
+module.exports = function(app, model) {
 
     // var pages = [
     //     { _id: "321", name: "Post 1", websiteId: "456", description: "Lorem" },

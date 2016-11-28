@@ -1,7 +1,7 @@
 /**
  * Created by vishalrao on 11/1/16.
  */
-module.exports = function(app) {
+module.exports = function(app, model) {
     // var websites = [
     //     { _id: "123", name: "Facebook",    developerId: "456", description: "Lorem" },
     //     { _id: "234", name: "Tweeter",     developerId: "456", description: "Lorem" },
@@ -18,7 +18,7 @@ module.exports = function(app) {
     app.delete("/api/website/:websiteId", deleteWebsite);
 
     function createWebsite(req, res) {
-        var uid = req.params.uid;
+        var uid = req.params.userId;
         var website = req.body;
         model
             .websiteModel

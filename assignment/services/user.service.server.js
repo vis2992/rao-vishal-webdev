@@ -1,7 +1,7 @@
 /**
  * Created by vishalrao on 11/1/16.
  */
-module.exports = function(app) {
+module.exports = function(app, model) {
 
     // var users = [
     //     {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -14,25 +14,25 @@ module.exports = function(app) {
     app.get('/api/user', findUser);
     app.get('/api/user/:uid', findUserById);
     app.put('/api/user/:uid', updateUser);
-    app.delete('/api/user/:uid', unregisterUser());
+    // app.delete('/api/user/:uid', unregisterUser());
     app.get('/api/user', findUserByCredentials);
     app.get('/api/user', findUserByUsername);
 
-    function unregisterUser(req, res) {
-        var uid = req.params.uid;
-        model
-            .userModel
-            .removeUser(uid)
-            .then(
-                function (status) {
-                    res.send(200);
-                },
-                function (error) {
-                    res.sendStatus(400).send(error);
-                }
-
-            );
-    }
+    // function unregisterUser(req, res) {
+    //     var uid = req.params.uid;
+    //     model
+    //         .userModel
+    //         .removeUser(uid)
+    //         .then(
+    //             function (status) {
+    //                 res.send(200);
+    //             },
+    //             function (error) {
+    //                 res.sendStatus(400).send(error);
+    //             }
+    //
+    //         );
+    // }
 
     function updateUser(req, res) {
         var user =  req.body;
@@ -52,6 +52,7 @@ module.exports = function(app) {
 
     function createUser(req, res) {
         var user = req.body;
+        delete user.confirmPassword;
         model
             .userModel
             .createUser(user)

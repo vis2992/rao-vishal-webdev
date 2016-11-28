@@ -35,7 +35,7 @@
     function ProfileController($routeParams, UserService, $location) {
         var vm = this;
 
-        var userId = parseInt($routeParams.uid);
+        var userId = $routeParams.uid;
 
         vm.updateUser = updateUser;
         vm.unregisterUser = unregisterUser;
@@ -76,24 +76,20 @@
         var vm = this;
         vm.register = register;
 
-        function register(user)
+        function register(username, password, confirmPassword)
         {
-            if(user === undefined)
-            {
-                vm.error = "All required fields need to be filled!";
-            }
-            else if(user.username === undefined || user.username === null)
+            if(username === undefined || username === null)
                 vm.error = "Username missing!";
-            else if(user.password === undefined || user.password === null)
+            else if(password === undefined || password === null)
                 vm.error = "Password missing!";
 
-            else if(user.password != user.confirmPassword)
+            else if(password != confirmPassword)
             {
                 vm.error = "Passwords do not match!";
             }
 
             UserService
-                .createUser(user)
+                .createUser(username, password)
                 .success(function(userObj){
                     var userId = userObj._id;
                     $location.url('/user/'+userId);
