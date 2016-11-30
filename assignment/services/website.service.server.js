@@ -38,7 +38,8 @@ module.exports = function(app, model) {
     }
 
     function findAllWebsitesForUser(req, res) {
-        var uid = req.params.uid;
+        var uid = req.params.userId;
+        console.log(uid);
         model
             .websiteModel
             .findAllWebsitesForUser(uid)
@@ -59,7 +60,7 @@ module.exports = function(app, model) {
     }
 
     function findWebsiteById(req, res) {
-        var websiteId = req.params.wid;
+        var websiteId = req.params.websiteId;
         model
             .websiteModel
             .findWebsiteById(websiteId)
@@ -77,7 +78,7 @@ module.exports = function(app, model) {
     }
 
     function updateWebsite(req, res) {
-        var websiteId = req.params.wid;
+        var websiteId = req.params.websiteId;
         var website = req.body;
         model
             .websiteModel
@@ -96,7 +97,7 @@ module.exports = function(app, model) {
     }
 
     function deleteWebsite(req, res){
-        var websiteId = req.params.wid;
+        var websiteId = req.params.websiteId;
         model
             .websiteModel
             .deleteWebsite(websiteId)

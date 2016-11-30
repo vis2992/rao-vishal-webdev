@@ -10,14 +10,12 @@
 
     function WebsiteListController($routeParams, WebsiteService) {
         var vm = this;
-        var userId = $routeParams['uid'];
-        vm.userId = userId;
-        var promise = WebsiteService.findWebsitesForUser(userId);
+        vm.userId = $routeParams['uid'];
+        var promise = WebsiteService.findWebsitesForUser(vm.userId);
         promise
-            .success(function (websites) {
-                vm.websites = websites;
-                console.log(vm.websites);
-
+            .success(function (user) {
+                vm.websites = user.websites;
+                console.log(user);
             })
             .error(function (error) {
                 console.log(error);

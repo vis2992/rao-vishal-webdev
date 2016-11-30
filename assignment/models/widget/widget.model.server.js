@@ -27,6 +27,7 @@ module.exports = function () {
     }
 
     function createWidget(pageId, widget) {
+        console.log("widget:"+widget.widgetType);
         return WidgetModel.create(widget)
             .then(function (widgetObj) {
                 return model.pageModel
@@ -37,8 +38,8 @@ module.exports = function () {
                                 pageObj.widgets.push(widgetObj._id);
                                 pageObj.save();
                                 widgetObj._page = pageObj._id;
+                                widgetObj.type = widget.widgetType;
                                 return widgetObj.save();
-
                             })
 
                     })
@@ -56,7 +57,7 @@ module.exports = function () {
         return WidgetModel.findById(widgetId);
     }
 
-    function updateWidget(widget) {
+    function updateWidget(widgetId, widget) {
 
         var widgetType = widget.widgetType;
         if(widgetType === "HEADER")
@@ -64,7 +65,7 @@ module.exports = function () {
             return WidgetModel
                 .update(
                     {
-                        _id: widget._id
+                        _id: widgetId
                     },
                     {
                         name: widget.name,
@@ -77,7 +78,7 @@ module.exports = function () {
         {
             return WidgetModel.update(
                 {
-                    _id: widget._id
+                    _id: widgetId
                 },
                 {
                     text: widget.text
@@ -88,7 +89,7 @@ module.exports = function () {
         {
             return WidgetModel.update(
                 {
-                    _id: widget._id
+                    _id: widgetId
                 },
                 {
                     name: widget.name,
@@ -102,7 +103,7 @@ module.exports = function () {
         {
             return WidgetModel.update(
                 {
-                    _id: widget._id
+                    _id: widgetId
                 },
                 {
                     name: widget.name,
@@ -121,7 +122,7 @@ module.exports = function () {
                 return model
                     .pageModel
                     .removeWidgetFromPage(pageId, widgetId)
-                    .then(function (page) {
+                    .then(function () {
                         return WidgetModel.remove({_id: widgetId});
                     })
             })

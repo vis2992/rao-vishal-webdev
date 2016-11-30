@@ -40,7 +40,6 @@ module.exports = function () {
                         websiteObj.save();
                         return pageObj.save();
                     });
-
             });
 
     }
@@ -63,7 +62,6 @@ module.exports = function () {
         return PageModel.update(
             {
                 _id: pageId
-
             },
             {
                 name: page.name,

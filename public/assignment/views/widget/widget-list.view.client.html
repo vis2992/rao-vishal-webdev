@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-content flow-text">
                 <div jga-sortable class="col-sm-12 widget-edit-parent " >
-                    <div ng-switch="widget.widgetType" ng-repeat="widget in model.widgets" class="list-parent">
+                    <div ng-switch="widget.type" ng-repeat="widget in model.widgets" class="list-parent">
                         <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="right list-child">
                             <i class="fa fa-cog" aria-hidden="true"></i>
                             <i class="fa fa-bars" aria-hidden="true"></i>
@@ -31,15 +31,29 @@
                             <h5 ng-switch-when="5">{{widget.text}}</h5>
                             <h6 ng-switch-when="6">{{widget.text}}</h6>
                         </div>
-                        <div ng-switch-when="YOUTUBE" style="width: 100%" class="zero-right-pad">
-                            <iframe width="100%" height="315"
+                        <div ng-switch-when="YOUTUBE" class="zero-right-pad youtube-widget">
+                            <iframe
                                     ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
-                                    frameborder="0" allowfullscreen></iframe>
+                                    frameborder="0" allowfullscreen>
+                            </iframe>
                         </div>
                         <div ng-switch-when="IMAGE" class="zero-right-pad">
-                            <img ng-src = "{{widget.url}}" style="width:95%;"/>
+                            <img ng-src = "{{widget.url}}" style="width:100%;"/>
                         </div>
                         <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
+                        </div>
+                        <div ng-switch-when="TEXT">
+                            <div ng-if="widget.formatted" text-angular ta-toolbar="[['h1','h2','h3'],
+                            ['bold','italics','underline','strikeThrough'],
+                            ['ul','ol'],
+                            ['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                            ['indent','outdent'],['html']]">
+                            </div>
+                            <input ng-if="!widget.formatted && (!widget.rows || widget.rows===1)"
+                                   placeholder="{{widget.placeholder}}" class="form-control"/>
+                            <textarea ng-if="!widget.formatted && (widget.rows > 1)"
+                                      rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                                      class="form-control">{{widget.text}}</textarea>
                         </div>
                         <br/>
                     </div>

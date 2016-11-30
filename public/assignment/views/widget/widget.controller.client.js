@@ -18,7 +18,7 @@
             WidgetService
                 .findWidgetsByPageId(vm.pageId)
                 .success(function (widgets) {
-                    vm.widgets = widgets;
+                    vm.widgets = widgets.widgets;
                 })
                 .error(function (error) {
                     console.log(error);
@@ -54,6 +54,8 @@
         vm.imageHandler = imageHandler;
         vm.youtubeHandler = youtubeHandler;
         vm.deleteWidget = deleteWidget;
+        vm.HTMLHandler = HTMLHandler;
+        vm.textHandler = textHandler;
 
         function headerHandler() {
             var widget = {name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
@@ -70,13 +72,22 @@
             widgetUpdate(widget)
         }
 
+        function HTMLHandler() {
+            var widget = {name:vm.widget.name, widgetType: "HTML", size: vm.widget.size, text: vm.widget.text };
+            widgetUpdate(widget)
+        }
+
+        function textHandler() {
+            var widget = {text:vm.widget.text, type: "TEXT", rows: vm.widget.rows, placeholder: vm.widget.placeholder,
+                formatted: vm.widget.formatted };
+            widgetUpdate(widget)
+        }
+
         function widgetUpdate(widget) {
-            var promise = WidgetService.updateWidget(vm.wgid+"", widget);
+            var promise = WidgetService.updateWidget(vm.wgid, widget);
             promise
-                .success(function (result) {
-                    if(result === '1') {
-                        $location.url("/user/" + vm.userid + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
-                    }
+                .success(function () {
+                    $location.url("/user/" + vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
                 })
                 .error(function (error) {
                     console.log("error " + error);
@@ -84,7 +95,7 @@
         }
 
         function deleteWidget() {
-            var promise = WidgetService.deleteWidget(vm.wgid+"");
+            var promise = WidgetService.deleteWidget(vm.wgid);
             promise
                 .success(function (result) {
                     if(result === '1') {
@@ -120,6 +131,8 @@
         vm.headerHandler = headerHandler;
         vm.imageHandler = imageHandler;
         vm.youtubeHandler = youtubeHandler;
+        vm.HTMLHandler = HTMLHandler;
+        vm.textHandler = textHandler;
 
         function headerHandler() {
             var widget = { name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
@@ -136,21 +149,27 @@
             widgetCreate(widget);
         }
 
-        function widgetCreate(widget) {
+        function HTMLHandler() {
+            var widget = { name:vm.widget.name, widgetType: "HTML", size: vm.widget.size, text: vm.widget.text };
+            widgetCreate(widget);
+        }
 
-            var promise = WidgetService.createWidget(vm.pageId+"", widget);
+        function textHandler() {
+            var widget = {text:vm.widget.text, widgetType: "TEXT", rows: vm.widget.rows, placeholder: vm.widget.placeholder,
+                formatted: vm.widget.formatted };
+            widgetCreate(widget)
+        }
+
+        function widgetCreate(widget) {
+            var promise = WidgetService.createWidget(vm.pageId, widget);
             promise
-                .success(function (result) {
-                    if(result === '1') {
+                .success(function () {
                         $location.url("/user/" + vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
-                    }
                 })
                 .error(function (error) {
                     console.log("error " + error);
                 });
         }
-
-
     }
 
 })();

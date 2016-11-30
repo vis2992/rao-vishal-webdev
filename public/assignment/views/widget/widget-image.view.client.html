@@ -13,7 +13,7 @@
             </div>
         </div>
 
-        <a ng-click="model.updateCurrentWidget()" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
+        <a ng-click="model.imageHandler()" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
     </div>
 </nav>
 <!--End of Header Navbar-->
@@ -61,7 +61,7 @@
                 </form>
                 <br>
                 <div ng-if="model.widget._id">
-                    <a class="waves-effect waves-light btn red" style="display: block;" ng-click="model.deleteCurrentWidget()">Delete</a>
+                    <a class="waves-effect waves-light btn red" style="display: block;" ng-click="model.deleteWidget()">Delete</a>
                 </div>
             </div>
         </div>

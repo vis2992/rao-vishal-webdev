@@ -24,6 +24,8 @@ module.exports = function(app, model) {
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
+        var widgetName =  req.body.name;
+        var widgetText = req.body.text;
 
 
         var widget  = {widgetType:"IMAGE", url: "/uploads/"+filename};
@@ -31,67 +33,40 @@ module.exports = function(app, model) {
         var widgetId = req.body.widgetId;
 
         if(widgetId == "") {
-            widget._id = new Date().getTime().toString();
-            widget.pageId = pageId;
-            widgets.push(widget);
+            model
+                .widgetModel
+                .createWidget(pageId, widget)
+                .then(
+                    function(widget) {
+                        res.redirect('../assignment/index.html#/user/'+userId+'/website/'+websiteId+'/page/'+pageId+"/widget");
+                    });
         }
-        else {
-            for (var i = 0; i < widgets.length; i++) {
-                if (widgets[i]._id === widgetId) {
-                    widgets[i].url = widget.url;
-                    break;
-                }
-            }
+        else
+        {
+            model
+                .widgetModel
+                .updateWidget(widgetId, widget)
+                .then(
+                    function (status) {
+                        res.redirect('../assignment/index.html#/user/'+userId+'/website/'+websiteId+'/page/'+pageId+"/widget");
+                    },
+                    function (error) {
+                        console.log("Update error " + error);
+                        res.redirect('../assignment/index.html#/user/'+userId+'/website/'+websiteId+'/page/'+pageId+"/widget");
+                    }
+                );
         }
-
-        res.redirect('../assignment/index.html#/user/'+userId+'/website/'+websiteId+'/page/'+pageId+"/widget");
-
-
-        model
-            .widgetModel
-            .findWidgetById(widgetId)
-            .then(function (Widget) {
-                Widget.name = widgetName;
-                Widget.text = widgetText;
-                Widget.width = width;
-                Widget.url = "/assignment/uploads/" + filename;
-
-                model
-                    .widgetModel
-                    .updateWidget(widgetId, Widget)
-                    .then(
-                        function (status) {
-                            if(status.ok ==  1)
-                            {
-                                var destinationPage = "/assignment/index.html#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId;
-                                res.redirect(destinationPage);
-                            }
-                            else
-                            {
-                                res.redirect("back");
-                            }
-
-                        },
-                        function (error) {
-                            res.sendStatus(400).send(error);
-
-                        }
-                    );
-            });
-
     }
 
-
-    var widgets = [
-        { _id: "123", widgetType: "HEADER", pageId: "321", size: 2, text: "GIZMODO"},
-        { _id: "234", widgetType: "HEADER", pageId: "321", size: 4, text: "Lorem ipsum"},
-        { _id: "345", widgetType: "IMAGE", pageId: "321", width: "100%", url: "http://lorempixel.com/400/200/"},
-        { _id: "456", widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"},
-        { _id: "567", widgetType: "HEADER", pageId: "321", size: 4, text: "Lorem ipsum"},
-        { _id: "678", widgetType: "YOUTUBE", pageId: "321", width: "100%", url: "https://youtu.be/AM2Ivdi9c4E" },
-        { _id: "789", widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"}
-    ];
-
+    // var widgets = [
+    //     { _id: "123", widgetType: "HEADER", pageId: "321", size: 2, text: "GIZMODO"},
+    //     { _id: "234", widgetType: "HEADER", pageId: "321", size: 4, text: "Lorem ipsum"},
+    //     { _id: "345", widgetType: "IMAGE", pageId: "321", width: "100%", url: "http://lorempixel.com/400/200/"},
+    //     { _id: "456", widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"},
+    //     { _id: "567", widgetType: "HEADER", pageId: "321", size: 4, text: "Lorem ipsum"},
+    //     { _id: "678", widgetType: "YOUTUBE", pageId: "321", width: "100%", url: "https://youtu.be/AM2Ivdi9c4E" },
+    //     { _id: "789", widgetType: "HTML", pageId: "321", text: "<p>Lorem ipsum</p>"}
+    // ];
 
     app.post("/api/page/:pageId/widget" , createWidget);
     app.get("/api/page/:pageId/widget" , findAllWidgetsForPage);
@@ -103,7 +78,7 @@ module.exports = function(app, model) {
     function sortWidgets(req, res) {
         var start = req.query.initial;
         var end = req.query.final;
-        var pageId = req.params.pid;
+        var pageId = req.params.pageId;
         model
             .widgetModel
             .reorderWidget(start, end, pageId)
@@ -125,7 +100,7 @@ module.exports = function(app, model) {
 
 
     function createWidget(req, res) {
-        var pageId = req.params.pid;
+        var pageId = req.params.pageId;
         var widget = req.body;
         model
             .widgetModel
@@ -147,7 +122,7 @@ module.exports = function(app, model) {
     }
 
     function findAllWidgetsForPage(req, res) {
-        var pageId = req.params.pid;
+        var pageId = req.params.pageId;
         model
             .pageModel
             .findAllWidgetsForPage(pageId)
@@ -167,7 +142,7 @@ module.exports = function(app, model) {
     }
 
     function updateWidget(req, res) {
-        var widgetId = req.params.wgid;
+        var widgetId = req.params.widgetId;
         var widget = req.body;
         model
             .widgetModel
@@ -189,7 +164,7 @@ module.exports = function(app, model) {
 
 
     function findWidgetById(req, res) {
-        var widgetId = req.params.wgid;
+        var widgetId = req.params.widgetId;
         model
             .widgetModel
             .findWidgetById(widgetId)
@@ -210,7 +185,7 @@ module.exports = function(app, model) {
 
 
     function deleteWidget(req, res) {
-        var widgetId = req.params.wgid;
+        var widgetId = req.params.widgetId;
         model
             .widgetModel
             .deleteWidget(widgetId)
@@ -228,9 +203,5 @@ module.exports = function(app, model) {
 
                 }
             );
-    }
-
-    function isNotEmpty(val) {
-        return !( val === null || val === "" || val === undefined );
     }
 };

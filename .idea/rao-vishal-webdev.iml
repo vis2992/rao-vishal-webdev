@@ -18,5 +18,10 @@
     <orderEntry type="library" name="a542e334c5" level="application" />
     <orderEntry type="library" name="angular-route" level="application" />
     <orderEntry type="library" name="angular-materialize" level="application" />
+    <orderEntry type="library" name="textAngular-rangy" level="application" />
+    <orderEntry type="library" name="textAngular-sanitize" level="application" />
+    <orderEntry type="library" name="textAngular" level="application" />
+    <orderEntry type="library" name="jquery-ui" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>

@@ -18,7 +18,7 @@
         var promise = PageService.findPageByWebsiteId(websiteId);
         promise
             .success(function (websitePages) {
-                vm.pages = websitePages;
+                vm.pages = websitePages.pages;
             })
             .error(function (error) {
                 console.log(error);

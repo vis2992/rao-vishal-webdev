@@ -19,7 +19,7 @@ module.exports = function(app, model) {
     app.delete("/api/page/:pageId", deletePage);
 
     function createPage(req, res){
-        var websiteId = req.params.wid;
+        var websiteId = req.params.websiteId;
         var page = req.body;
         model
             .pageModel
@@ -43,7 +43,7 @@ module.exports = function(app, model) {
     }
 
     function findAllPagesForWebsite(req, res){
-        var websiteId = req.params.wid;
+        var websiteId = req.params.websiteId;
         model
             .pageModel
             .findAllPagesForWebsite(websiteId)
@@ -63,7 +63,7 @@ module.exports = function(app, model) {
     }
 
     function findPageById(req, res){
-        var pageId = req.params.pid;
+        var pageId = req.params.pageId;
         model
             .pageModel
             .findPageById(pageId)
@@ -83,7 +83,7 @@ module.exports = function(app, model) {
     }
 
     function updatePage(req, res){
-        var pageId = req.params.pid;
+        var pageId = req.params.pageId;
         var page = req.body;
         model
             .pageModel
@@ -105,7 +105,7 @@ module.exports = function(app, model) {
     }
 
     function deletePage(req, res){
-        var pageId = req.params.pid;
+        var pageId = req.params.pageId;
         model
             .pageModel
             .deletePage(pageId)

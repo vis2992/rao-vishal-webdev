@@ -1,0 +1,60 @@
+<!--Header Navbar-->
+<nav>
+    <div class="nav-wrapper grey-color">
+        <div class="col s1">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="brand-logo left"><i class="fa fa-chevron-left icon-pad black-color" aria-hidden="true"></i></a>
+        </div>
+        <div ng-switch ="model.widget._id">
+            <div ng-switch-when="undefined" class="col s3">
+                <a href="" class="brand-logo grey-heading">New Widget</a>
+            </div>
+            <div ng-switch-default class="col s3">
+                <a href="" class="brand-logo grey-heading">Widget Edit</a>
+            </div>
+        </div>
+
+        <a ng-click="model.textHandler()" class="brand-logo right"><i class="fa fa-check icon-pad black-color" aria-hidden="true"></i></a>
+    </div>
+</nav>
+<!--End of Header Navbar-->
+<!--Register Form-->
+<div class="row">
+    <div class="col s12 m12">
+        <form>
+            <br>
+            <input ng-model="model.widget.text" id="text" class="form-control"/>
+            <label for="text">Text</label>
+            <br>
+            <input ng-model="model.widget.rows" id="rows" class="form-control" type="number"/>
+            <label for="rows">Rows</label>
+            <br>
+            <input ng-model="model.widget.placeholder" id="placeholder" class="form-control"/>
+            <label for="placeholder">Placeholder</label>
+            <br>
+            <br>
+            <input ng-model="model.widget.formatted" type="checkbox" id="formatted" />
+            <label for="formatted">Formatted</label>
+            <br>
+            <div ng-if="model.widget._id">
+                <a class="waves-effect waves-light btn red" ng-click="model.deleteWidget()" style="display: block;">Delete</a>
+            </div>
+        </form>
+    </div>
+</div>
+<!--End of Register Form-->
+
+<!--Footer Navbar-->
+<div class="row">
+    <nav class="navbar grey-color footer page-footer">
+        <div class="container">
+            <a href="#/user/{{model.uid}}" class="brand-logo right"><i class="fa fa-user profile-blue" aria-hidden="true"></i></a>
+        </div>
+    </nav>
+</div>
+
+<!--End of Footer Navbar-->
+<script>
+    $(document).ready(function() {
+        Materialize.updateTextFields();
+    });
+</script>
