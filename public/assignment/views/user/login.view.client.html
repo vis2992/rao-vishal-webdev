@@ -4,18 +4,26 @@
         <div class="card">
             <div class="card-content">
                 <h1>Login</h1>
-                <div class="input-field col s12">
-                    <input id="username" ng-model="model.username" type="text" class="validate">
-                    <label for="username">username</label>
-                </div>
-                <div class="input-field col s12">
-                    <input id="password" ng-model="model.password" type="password" class="validate">
-                    <label for="password">password</label>
-                </div>
-                <a class="waves-effect waves-light btn blue display_block" style="display: block;"
-                   ng-click="model.login(model.username, model.password)">Login</a>
-                <br>
-                <a class="waves-effect waves-light btn green display_block" style="display: block;" href="#register">Register</a>
+                <form>
+                    <div class="input-field col s12">
+                        <input id="username" ng-model="model.user.username" type="text" class="validate" required>
+                        <label for="username">username</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="password" ng-model="model.user.password" type="password" class="validate" required>
+                        <label for="password">password</label>
+                    </div>
+                    <a class="waves-effect waves-light btn blue display_block" style="display: block;"
+                       ng-disabled="!model.user.username.length || !model.user.password.length"
+                       ng-click="model.login(model.user)">Login</a>
+                    <br>
+                    <a href="/auth/facebook" class="btn btn-primary btn-block">
+                        <span class="fa fa-facebook"></span>
+                        Facebook
+                    </a>
+                    <br>
+                    <a class="waves-effect waves-light btn green display_block" style="display: block;" href="#register">Register</a>
+                </form>
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@
                 </div>
                 <div class="input-field col s12">
                     <label for="email" class="position-static">Email address</label>
-                    <input id="email" type="email" class="validate" placeholder="alice@wonderland.com">
+                    <input id="email" type="email" ng-model="model.user.email" class="validate" placeholder="alice@wonderland.com">
                 </div>
                 <div class="input-field col s12">
                     <label for="firstname" class="position-static">First Name</label>
@@ -30,7 +30,7 @@
                 </div>
                 <a class="waves-effect waves-light btn blue-color" style="display: block;" href="#/user/{{model.user._id}}/website">Websites</a>
                 <br>
-                <a class="waves-effect waves-light btn red" style="display: block;" href="#/login">Logout</a>
+                <a class="waves-effect waves-light btn red" style="display: block;" ng-click="model.logout()">Logout</a>
             </div>
         </div>
     </div>

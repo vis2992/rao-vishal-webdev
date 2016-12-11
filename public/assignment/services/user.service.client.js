@@ -8,11 +8,31 @@
         var api = {
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
+            findCurrentUser: findCurrentUser,
             createUser: createUser,
             updateUser: updateUser,
-            unregisterUser: unregisterUser
+            unregisterUser: unregisterUser,
+            logout: logout,
+            login: login,
+            register: register
         };
         return api;
+
+        function findCurrentUser(){
+            return $http.get("/api/user");
+        }
+
+        function register(user) {
+            return $http.post("/api/register", user);
+        }
+
+        function logout() {
+            return $http.post("/api/logout");
+        }
+
+        function login(user) {
+            return $http.post("/api/login", user);
+        }
 
         function unregisterUser(uid) {
             var url = "/api/user/" + uid;

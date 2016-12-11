@@ -60,20 +60,27 @@
         }
 
         function updateCurrentPage() {
-            PageService
-                .updatePage(vm.pageId, vm.page)
-                .success(function (status) {
-                    if(status == '0') {
-                        vm.error = "Unable to update page";
-                    }
-                    else {
-                        $location.url("/user/"+vm.userId + "/website/" + vm.websiteId + "/page");
-                    }
-                })
-                .error(function (error) {
-                    console.log(error);
+            if(vm.page.name === "")
+            {
+                Materialize.toast('Please Enter a Page Name', 1000,'');
+                vm.error = "Please enter a Page Name";
+            }
+            else {
+                PageService
+                    .updatePage(vm.pageId, vm.page)
+                    .success(function (status) {
+                        if(status == '0') {
+                            vm.error = "Unable to update page";
+                        }
+                        else {
+                            $location.url("/user/"+vm.userId + "/website/" + vm.websiteId + "/page");
+                        }
+                    })
+                    .error(function (error) {
+                        console.log(error);
 
-                });
+                    });
+            }
         }
     }
 
@@ -101,26 +108,26 @@
 
         function createPage()
         {
-            if(vm.page === undefined)
+            if(vm.page === undefined || vm.page.name === "")
             {
-                vm.error = "A page name is required";
-                return;
+                Materialize.toast('Please Enter a Page Name', 1000,'');
             }
+            else {
+                PageService
+                    .createPage(vm.websiteId, vm.page)
+                    .success(function (status) {
+                        if(status == '0') {
+                            vm.error = "Page already exists!";
+                        }
+                        else {
+                            $location.url("/user/"+userId + "/website/" + websiteId + "/page");
+                        }
 
-            PageService
-                .createPage(vm.websiteId, vm.page)
-                .success(function (status) {
-                    if(status == '0') {
-                        vm.error = "Page already exists!";
-                    }
-                    else {
-                        $location.url("/user/"+userId + "/website/" + websiteId + "/page");
-                    }
-
-                })
-                .error(function (error) {
-                    console.log(error);
-                });
+                    })
+                    .error(function (error) {
+                        console.log(error);
+                    });
+            }
         }
     }
 })();

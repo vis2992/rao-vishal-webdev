@@ -12,23 +12,30 @@
         var vm = this;
         vm.login = login;
 
-        function login(username, password) {
-            if(username === undefined || password === undefined)
-            {
-                vm.error = "Enter Username and Password";
-                return;
-            }
-            var promise = UserService.findUserByCredentials(username,password);
-            promise
-                .success(function(user){
-                    if(user === '0')
-                        vm.error = "No such user or the username,password does not match";
-                    else
-                        $location.url("user/" + user._id);
-                })
-                .error(function (error) {
-                    console.log(error);
-                });
+        function login(user) {
+            UserService
+                .login(user)
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        $location.url("/user/"+user._id);
+                    });
+            // if(username === undefined || password === undefined)
+            // {
+            //     vm.error = "Enter Username and Password";
+            //     return;
+            // }
+            // var promise = UserService.findUserByCredentials(username,password);
+            // promise
+            //     .success(function(user){
+            //         if(user === '0')
+            //             vm.error = "No such user or the username,password does not match";
+            //         else
+            //             $location.url("user/" + user._id);
+            //     })
+            //     .error(function (error) {
+            //         console.log(error);
+            //     });
         }
     }
 
@@ -39,10 +46,20 @@
 
         vm.updateUser = updateUser;
         vm.unregisterUser = unregisterUser;
+        vm.logout = logout;
+
+        function logout(){
+            UserService
+                .logout()
+                .success(function(){
+                    $location.url("/login");
+                })
+        }
+
 
         function init() {
             UserService
-                .findUserById(userId)
+                .findCurrentUser(userId)
                 .success(function(user){
                     console.log(user);
                     if(user != '0') {
@@ -78,25 +95,33 @@
 
         function register(username, password, confirmPassword)
         {
-            if(username === undefined || username === null)
-                vm.error = "Username missing!";
-            else if(password === undefined || password === null)
-                vm.error = "Password missing!";
-
-            else if(password != confirmPassword)
-            {
-                vm.error = "Passwords do not match!";
-            }
-
             UserService
-                .createUser(username, password)
-                .success(function(userObj){
-                    var userId = userObj._id;
-                    $location.url('/user/'+userId);
-                })
-                .error(function (error) {
-                    vm.error = "Please choose a different username, this username already exists!"
-                });
+                .register(user)
+                .then(
+                    function(response) {
+                        var user = response.data;
+                        $location.url("#/user/"+user._id);
+                    });
+
+            // if(username === undefined || username === null)
+            //     vm.error = "Username missing!";
+            // else if(password === undefined || password === null)
+            //     vm.error = "Password missing!";
+            //
+            // else if(password != confirmPassword)
+            // {
+            //     vm.error = "Passwords do not match!";
+            // }
+            //
+            // UserService
+            //     .createUser(username, password)
+            //     .success(function(userObj){
+            //         var userId = userObj._id;
+            //         $location.url('/user/'+userId);
+            //     })
+            //     .error(function (error) {
+            //         vm.error = "Please choose a different username, this username already exists!"
+            //     });
         }
 
     }

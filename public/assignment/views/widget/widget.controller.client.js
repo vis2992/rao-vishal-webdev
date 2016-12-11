@@ -59,28 +59,58 @@
 
         function headerHandler() {
             var widget = {name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
-            widgetUpdate(widget)
+            if(vm.widget.name === "")
+            {
+                Materialize.toast('Please Enter a Widget Name', 1000,'');
+            }
+            else {
+                widgetUpdate(widget);
+            }
         }
 
         function imageHandler() {
             var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
-            widgetUpdate(widget)
+            if(vm.widget.name === "")
+            {
+                Materialize.toast('Please Enter a Widget Name', 1000,'');
+            }
+            else {
+                widgetUpdate(widget);
+            }
         }
 
         function youtubeHandler() {
             var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
-            widgetUpdate(widget)
+            if(vm.widget.name === "")
+            {
+                Materialize.toast('Please Enter a Widget Name', 1000,'');
+            }
+            else {
+                widgetUpdate(widget);
+            }
         }
 
         function HTMLHandler() {
             var widget = {name:vm.widget.name, widgetType: "HTML", size: vm.widget.size, text: vm.widget.text };
-            widgetUpdate(widget)
+            if(vm.widget.name === "")
+            {
+                Materialize.toast('Please Enter a Widget Name', 1000,'');
+            }
+            else {
+                widgetUpdate(widget);
+            }
         }
 
         function textHandler() {
             var widget = {text:vm.widget.text, type: "TEXT", rows: vm.widget.rows, placeholder: vm.widget.placeholder,
                 formatted: vm.widget.formatted };
-            widgetUpdate(widget)
+            if(vm.widget.name === "")
+            {
+                Materialize.toast('Please Enter a Widget Name', 1000,'');
+            }
+            else {
+                widgetUpdate(widget);
+            }
         }
 
         function widgetUpdate(widget) {
@@ -97,10 +127,9 @@
         function deleteWidget() {
             var promise = WidgetService.deleteWidget(vm.wgid);
             promise
-                .success(function (result) {
-                    if(result === '1') {
-                        $location.url("/user/" + vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
-                    }
+                .success(function () {
+                    Materialize.toast('Widget Deleted', 1000,'');
+                    $location.url("/user/" + vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
                 })
                 .error(function (error) {
                     console.log("error " + error);
@@ -135,18 +164,36 @@
         vm.textHandler = textHandler;
 
         function headerHandler() {
-            var widget = { name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
-            widgetCreate(widget);
+            if(vm.widget === undefined || vm.widget.name === "")
+            {
+                Materialize.toast('Please Enter a Widget Name', 1000,'');
+            }
+            else {
+                var widget = { name:vm.widget.name, widgetType: "HEADER", size: vm.widget.size, text: vm.widget.text };
+                widgetCreate(widget);
+            }
         }
 
         function imageHandler() {
             var widget = {name:vm.widget.name, widgetType: "IMAGE", text: vm.widget.text, width: vm.widget.width, url: vm.widget.url };
-            widgetCreate(widget);
+            if(vm.widget === undefined || vm.widget.name === "")
+            {
+                Materialize.toast('Please Enter a Widget Name', 1000,'');
+            }
+            else {
+                widgetCreate(widget);
+            }
         }
 
         function youtubeHandler() {
             var widget = {name:vm.widget.name, widgetType: "YOUTUBE", width: vm.widget.width, url: vm.widget.url };
-            widgetCreate(widget);
+            if(vm.widget === undefined || vm.widget.name === "")
+            {
+                Materialize.toast('Please Enter a Widget Name', 1000,'');
+            }
+            else {
+                widgetCreate(widget);
+            }
         }
 
         function HTMLHandler() {
@@ -157,13 +204,15 @@
         function textHandler() {
             var widget = {text:vm.widget.text, widgetType: "TEXT", rows: vm.widget.rows, placeholder: vm.widget.placeholder,
                 formatted: vm.widget.formatted };
-            widgetCreate(widget)
+            widgetCreate(widget);
+
         }
 
         function widgetCreate(widget) {
             var promise = WidgetService.createWidget(vm.pageId, widget);
             promise
                 .success(function () {
+                    Materialize.toast('Widget created!', 1000,'');
                         $location.url("/user/" + vm.userId + "/website/"+vm.websiteId + "/page/" + vm.pageId + "/widget");
                 })
                 .error(function (error) {
